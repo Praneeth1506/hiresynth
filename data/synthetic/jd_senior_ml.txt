@@ -1,0 +1,43 @@
+{
+  "job_description": {
+    "company_background": "AetherAI is an innovative AI-powered SaaS startup based in Bangalore, specializing in providing cutting-edge solutions for businesses seeking to leverage machine learning and data analytics. Our mission is to empower organizations through intelligent automation and actionable insights, driving efficiency and growth in an ever-evolving digital landscape.",
+    "role_overview": "We are seeking a Senior Machine Learning Engineer to join our dynamic team. In this role, you will be responsible for owning the end-to-end lifecycle of our machine learning models, from conception through deployment, ensuring they deliver significant business impact and enhance our product offerings.",
+    "responsibilities": [
+      "Design, develop, and implement scalable machine learning models for various applications including natural language processing, computer vision, and predictive analytics.",
+      "Lead the optimization and tuning of existing ML models to improve accuracy and performance.",
+      "Collaborate with cross-functional teams to define and refine product requirements, ensuring alignment with business objectives.",
+      "Conduct rigorous experiments to evaluate model performance, employing best practices for validating and benchmarking against industry standards.",
+      "Implement and maintain robust data pipelines for model training and evaluation, ensuring data integrity and quality.",
+      "Utilize cloud services (AWS, GCP, or Azure) to deploy models and ensure high availability and reliability.",
+      "Mentor and guide junior engineers in best practices for machine learning and software development.",
+      "Stay abreast of the latest advancements in AI and machine learning technologies, integrating relevant innovations into our products.",
+      "Contribute to open-source initiatives and engage with the AI community to enhance the company’s reputation as a thought leader."
+    ],
+    "must_have_requirements": [
+      "Proficiency in Python programming language.",
+      "Experience with deep learning frameworks such as PyTorch or TensorFlow.",
+      "Strong background in training and deploying machine learning models with a focus on performance optimization.",
+      "Minimum of 3 years of hands-on experience working in machine learning or related fields."
+    ],
+    "nice_to_have": [
+      "Familiarity with MLOps practices and tools for model deployment and monitoring.",
+      "Experience with containerization technologies such as Kubernetes.",
+      "Knowledge of distributed training methods to improve model efficiency.",
+      "Familiarity with Triton Inference Server for model serving.",
+      "Experience using Weights & Biases or similar tools for experiment tracking and model management."
+    ],
+    "seniority": {
+      "ideal_experience": "5-8 years",
+      "position_type": "senior individual contributor"
+    },
+    "location": "Bangalore (hybrid — 3 days in office), open to remote for exceptional candidates.",
+    "culture_and_values": [
+      "Commitment to innovation and continuous improvement.",
+      "Collaboration and respect are at the heart of our teamwork.",
+      "A focus on user-centric design and delivering value to our customers.",
+      "Encouragement of diversity, inclusion, and different perspectives to drive creativity and solutions."
+    ],
+    "compensation": "Competitive, ESOPs included.",
+    "how_to_apply": "Interested candidates are encouraged to send their resumes to careers@aetherai.com."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "jobTitle": "Data Scientist",
+  "company": {
+    "name": "FinTech Innovations",
+    "background": "A rapidly growing fintech company focused on transforming digital finance solutions. We are committed to leveraging technology to enhance financial services."
+  },
+  "roleOverview": "We are seeking a Data Scientist to join our dynamic team, responsible for deriving insights from complex datasets and contributing to our product development.",
+  "responsibilities": [
+    "Analyze large volumes of data to identify trends and patterns that can inform business decisions.",
+    "Collaborate with cross-functional teams to integrate data-driven solutions into product offerings.",
+    "Develop and implement machine learning models to drive predictive analytics.",
+    "Utilize Python for data manipulation and analysis, with familiarity in data visualization tools.",
+    "Communicate findings to stakeholders through reports and presentations.",
+    "Stay updated on industry trends in data science and fintech to drive innovation."
+  ],
+  "requirements": {
+    "education": "Bachelor's or Master's degree in a relevant field.",
+    "experience": "3–6 years of experience in data science, with a strong emphasis on programming in Python.",
+    "skills": "Familiarity with machine learning frameworks is preferred but not required; experience in analytics is also valuable."
+  },
+  "location": "Bangalore or Chennai"
+}

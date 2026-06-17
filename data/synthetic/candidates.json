@@ -1,0 +1,933 @@
+[
+  {
+    "candidate_id": "C001",
+    "type": "strong_match",
+    "name": "Ravi Kumar",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "MLOps"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Swiggy",
+        "start_date": "2021-05",
+        "end_date": "2024-08",
+        "summary": "Developed and optimized machine learning models for food recommendation systems, increasing user engagement by 20%."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Madras",
+      "graduation_year": 2018
+    },
+    "location": "Bangalore",
+    "total_years_exp": 6.0,
+    "github_url": "https://github.com/ravikumar",
+    "raw_text": "Ravi Kumar is a seasoned machine learning engineer with over six years of experience in developing advanced ML models, particularly in the food tech sector, and holds an M.Tech from IIT Madras.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C002",
+    "type": "strong_match",
+    "name": "Ananya Singh",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Kubernetes"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Zomato",
+        "start_date": "2019-07",
+        "end_date": "2024-08",
+        "summary": "Led a team to create scalable ML models for restaurant recommendation, resulting in a 15% increase in customer satisfaction scores."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2018
+    },
+    "location": "Chennai",
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/ananyasingh",
+    "raw_text": "Ananya Singh has five years of experience in machine learning engineering at Zomato, where she has significantly improved recommendation systems, and she earned her M.Tech from IIT Delhi.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C003",
+    "type": "strong_match",
+    "name": "Arjun Menon",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Distributed Training"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Flipkart",
+        "start_date": "2020-01",
+        "end_date": "2024-08",
+        "summary": "Worked on distributed training algorithms for product recommendation systems, enhancing processing speed by 30%."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Bombay",
+      "graduation_year": 2017
+    },
+    "location": "Bangalore",
+    "total_years_exp": 7.0,
+    "github_url": "https://github.com/arjunmenon",
+    "raw_text": "Arjun Menon has over seven years of hands-on experience in machine learning at Flipkart, focusing on distributed systems for recommendation engines, and he holds an M.Tech from IIT Bombay.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C004",
+    "type": "strong_match",
+    "name": "Sneha Reddy",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "MLflow"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "CRED",
+        "start_date": "2021-02",
+        "end_date": "2024-08",
+        "summary": "Created robust ML pipelines using MLflow to streamline model deployment, reducing deployment time by 40%."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Kharagpur",
+      "graduation_year": 2018
+    },
+    "location": "Chennai",
+    "total_years_exp": 5.5,
+    "github_url": "https://github.com/sneha-reddy",
+    "raw_text": "Sneha Reddy has a strong background in machine learning engineering with over five years at CRED, where she has significantly improved model deployment processes, and she completed her M.Tech at IIT Kharagpur.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C005",
+    "type": "strong_match",
+    "name": "Vikram Sharma",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "MLOps"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Ola",
+        "start_date": "2018-06",
+        "end_date": "2024-08",
+        "summary": "Developed MLOps frameworks to monitor and manage ML models in production, improving model accuracy and reliability."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Kanpur",
+      "graduation_year": 2017
+    },
+    "location": "Bangalore",
+    "total_years_exp": 6.0,
+    "github_url": "https://github.com/vikramsharma",
+    "raw_text": "Vikram Sharma is a skilled ML engineer with over six years of experience at Ola, specializing in MLOps and production model management, holding an M.Tech degree from IIT Kanpur.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C006",
+    "type": "good_match",
+    "name": "Aditi Sharma",
+    "skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Flipkart",
+        "start_date": "2020-02",
+        "end_date": "2023-05",
+        "summary": "Developed and deployed machine learning models for product recommendations, significantly improving user engagement."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2019
+    },
+    "location": "Bangalore",
+    "total_years_exp": 3.0,
+    "github_url": null,
+    "raw_text": "Aditi Sharma is a skilled Machine Learning Engineer with experience in developing and deploying models, specifically using Python and PyTorch at Flipkart, where she improved user engagement through advanced recommendations.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C007",
+    "type": "good_match",
+    "name": "Rahul Verma",
+    "skills": [
+      "Python",
+      "TensorFlow"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist",
+        "company": "Zomato",
+        "start_date": "2019-06",
+        "end_date": "2022-12",
+        "summary": "Worked on building and optimizing machine learning models for food delivery predictions, enhancing operational efficiency."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Kharagpur",
+      "graduation_year": 2018
+    },
+    "location": "Chennai",
+    "total_years_exp": 4.5,
+    "github_url": "https://github.com/rahulverma",
+    "raw_text": "Rahul Verma is a Data Scientist with 4.5 years of experience at Zomato, where he focused on machine learning models for food delivery predictions using Python and TensorFlow, resulting in improved operational efficiency.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C008",
+    "type": "good_match",
+    "name": "Neha Gupta",
+    "skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "CRED",
+        "start_date": "2018-08",
+        "end_date": "present",
+        "summary": "Designed ML models to detect fraudulent transactions, which played a crucial role in enhancing platform security."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Madras",
+      "graduation_year": 2018
+    },
+    "location": "remote",
+    "total_years_exp": 5.0,
+    "github_url": null,
+    "raw_text": "Neha Gupta is a Machine Learning Engineer with 5 years of experience at CRED, where she designed models for fraud detection using Python and PyTorch, significantly improving platform security.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C009",
+    "type": "good_match",
+    "name": "Vikram Singh",
+    "skills": [
+      "Python",
+      "TensorFlow"
+    ],
+    "experience": [
+      {
+        "title": "ML Engineer",
+        "company": "Meesho",
+        "start_date": "2018-01",
+        "end_date": "2023-04",
+        "summary": "Implemented machine learning algorithms for enhancing user experience in e-commerce, leading to a measurable increase in customer retention."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "BITS Pilani",
+      "graduation_year": 2017
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.3,
+    "github_url": "https://github.com/vikram-singh",
+    "raw_text": "Vikram Singh is an ML Engineer with over 5 years of experience at Meesho, where he implemented machine learning algorithms using Python and TensorFlow to enhance user experience in e-commerce, significantly increasing customer retention.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C010",
+    "type": "good_match",
+    "name": "Sonia Rao",
+    "skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist",
+        "company": "Urban Company",
+        "start_date": "2019-09",
+        "end_date": "2023-01",
+        "summary": "Developed predictive models for service demand forecasting, improving resource allocation and reducing operational costs."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IISc Bangalore",
+      "graduation_year": 2019
+    },
+    "location": "remote",
+    "total_years_exp": 3.3,
+    "github_url": null,
+    "raw_text": "Sonia Rao is a Data Scientist with 3.3 years of experience at Urban Company, where she developed predictive models for service demand forecasting using Python and PyTorch, leading to improved resource allocation and reduced operational costs.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C011",
+    "type": "hidden_gem",
+    "name": "Rahul Sharma",
+    "skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Innovatech Solutions",
+        "start_date": "2021-01",
+        "end_date": "2024-08",
+        "summary": "Led the development of predictive models to enhance product features, resulting in a 30% increase in user engagement."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2018
+    },
+    "location": "Bangalore",
+    "total_years_exp": 3.7,
+    "github_url": "https://github.com/rahulsharma",
+    "raw_text": "Despite a relatively short experience, Rahul has rapidly ascended from an analyst role to an MLE position, showcasing remarkable adaptability and a passion for machine learning evidenced by his active contributions on GitHub.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C012",
+    "type": "hidden_gem",
+    "name": "Sneha Iyer",
+    "skills": [
+      "Python",
+      "TensorFlow"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "TechnoLabs",
+        "start_date": "2020-05",
+        "end_date": "2024-08",
+        "summary": "Developed and optimized machine learning models for client projects, achieving high accuracy and reducing project delivery time by 20%."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Madras",
+      "graduation_year": 2019
+    },
+    "location": "Chennai",
+    "total_years_exp": 4.3,
+    "github_url": "https://github.com/sneha-iyer",
+    "raw_text": "Sneha's journey from a data analyst to an MLE reflects her quick learning and impactful contributions, particularly in model optimization and implementation, with a vibrant GitHub portfolio showcasing her projects.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C013",
+    "type": "hidden_gem",
+    "name": "Arjun Patel",
+    "skills": [
+      "Python",
+      "PyTorch"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "NextGen Tech",
+        "start_date": "2019-08",
+        "end_date": "2024-08",
+        "summary": "Played a key role in developing scalable ML solutions, with significant improvements in system performance and reliability."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Kanpur",
+      "graduation_year": 2018
+    },
+    "location": "Hyderabad",
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/arjunpatel",
+    "raw_text": "Arjun has demonstrated impressive growth within a short span, progressing within his roles and consistently delivering innovative ML solutions, clearly visible through his dynamic GitHub activity.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C014",
+    "type": "fresher",
+    "name": "Aarav Gupta",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "Machine Learning",
+      "Data Analysis"
+    ],
+    "experience": [
+      {
+        "title": "Research Intern",
+        "company": "IIT Madras",
+        "start_date": "2023-05",
+        "end_date": "2023-08",
+        "summary": "Worked on developing a machine learning model for image classification using PyTorch, contributing to research papers and gaining hands-on experience in model training."
+      },
+      {
+        "title": "Machine Learning Intern",
+        "company": "XYZ Startups",
+        "start_date": "2023-01",
+        "end_date": "2023-04",
+        "summary": "Assisted in building predictive models for customer behavior analysis, utilizing TensorFlow and data preprocessing techniques."
+      }
+    ],
+    "education": {
+      "degree": "B.Tech Computer Science",
+      "institution": "IIT Madras",
+      "graduation_year": 2024
+    },
+    "location": "Bangalore",
+    "total_years_exp": 0.5,
+    "github_url": "https://github.com/aarav-gupta-ml-projects",
+    "raw_text": "As a recent graduate from IIT Madras with a strong background in machine learning and Python programming, I have contributed to significant projects as a research intern and machine learning intern, developing skills in PyTorch and TensorFlow. My projects include building image classification models and predictive analytics tools, showcasing my ability to apply theoretical knowledge in practical settings. I am eager to leverage my skills in a challenging ML engineer role.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C015",
+    "type": "fresher",
+    "name": "Saanvi Rao",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Data Science",
+      "Kaggle"
+    ],
+    "experience": [
+      {
+        "title": "Capstone Project Lead",
+        "company": "IISc Bangalore",
+        "start_date": "2023-01",
+        "end_date": "2023-04",
+        "summary": "Led a team in creating a machine learning solution for predicting stock prices using TensorFlow, resulting in a robust model with a focus on data preprocessing and feature engineering."
+      },
+      {
+        "title": "Intern",
+        "company": "ABC Tech",
+        "start_date": "2023-05",
+        "end_date": "2023-08",
+        "summary": "Developed end-to-end machine learning pipelines and collaborated with teams to streamline model deployment processes."
+      }
+    ],
+    "education": {
+      "degree": "B.Tech Artificial Intelligence",
+      "institution": "IISc Bangalore",
+      "graduation_year": 2024
+    },
+    "location": "Chennai",
+    "total_years_exp": 0.5,
+    "github_url": "https://github.com/saanvi-rao-ml-projects",
+    "raw_text": "I am a recent graduate from IISc Bangalore with a specialized focus on Artificial Intelligence, having led a capstone project that utilized TensorFlow to predict stock prices, and interned at ABC Tech where I developed machine learning pipelines. My journey includes extensive coursework and participation in Kaggle competitions that honed my practical skills in model development. I am looking forward to applying my passion for machine learning in a dynamic engineering role.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C016",
+    "type": "overqualified",
+    "name": "Rajesh Kumar",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "MLOps",
+      "Kubernetes",
+      "ML model training"
+    ],
+    "experience": [
+      {
+        "title": "VP Engineering",
+        "company": "Infosys",
+        "start_date": "2018-01",
+        "end_date": "2023-08",
+        "summary": "Led a large engineering team of 150+ members, overseeing the development of AI solutions for enterprise clients, managing a budget of $10 million, and making strategic decisions that resulted in a 30% increase in project efficiency."
+      },
+      {
+        "title": "Director of AI",
+        "company": "TCS",
+        "start_date": "2010-05",
+        "end_date": "2017-12",
+        "summary": "Directed AI initiatives with a focus on large-scale ML deployments, managing cross-functional teams and implementing ML strategies that enhanced product offerings and increased market share."
+      }
+    ],
+    "education": {
+      "degree": "Ph.D. in Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2009
+    },
+    "location": "Bangalore",
+    "total_years_exp": 15.0,
+    "github_url": null,
+    "raw_text": "Rajesh Kumar is a seasoned engineering executive with over 15 years of experience in leading large teams and managing substantial budgets, recently serving as VP Engineering at Infosys, where he oversaw AI solution development and made strategic decisions that greatly improved project efficiency, along with a previous role as Director of AI at TCS focusing on large-scale ML deployments, holding a Ph.D. from IIT Delhi and based in Bangalore.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C017",
+    "type": "overqualified",
+    "name": "Sneha Patel",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "distributed training",
+      "MLOps",
+      "ML model training"
+    ],
+    "experience": [
+      {
+        "title": "Principal ML Architect",
+        "company": "Microsoft India",
+        "start_date": "2015-02",
+        "end_date": "2023-09",
+        "summary": "Architected machine learning frameworks for enterprise solutions, managed a budget of $15 million, and led a team of 100+ engineers, focusing on scalable ML deployments and organizational strategy."
+      },
+      {
+        "title": "CTO",
+        "company": "Tech Solutions Pvt Ltd",
+        "start_date": "2010-01",
+        "end_date": "2014-12",
+        "summary": "Oversaw technology strategy and direction for the company, managing product development and leading a team of 50 engineers, with a focus on innovative AI solutions that significantly improved client satisfaction."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Artificial Intelligence",
+      "institution": "IIT Kanpur",
+      "graduation_year": 2010
+    },
+    "location": "Chennai",
+    "total_years_exp": 13.0,
+    "github_url": null,
+    "raw_text": "Sneha Patel is a highly experienced technology executive with over 13 years in the field, currently a Principal ML Architect at Microsoft India where she has led large-scale ML framework development while managing a budget of $15 million and a team of over 100 engineers, previously serving as CTO at a tech startup, driving AI product innovation, with an M.Tech from IIT Kanpur and located in Chennai.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C018",
+    "type": "career_changer",
+    "name": "Rajesh Kumar",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "ML model training",
+      "TensorFlow"
+    ],
+    "experience": [
+      {
+        "title": "ML/Data Engineer",
+        "company": "Tech Innovations",
+        "start_date": "2017-01",
+        "end_date": "2020-01",
+        "summary": "Worked on developing machine learning models that improved product recommendations by 20%."
+      },
+      {
+        "title": "Co-Founder",
+        "company": "Startup X",
+        "start_date": "2020-01",
+        "end_date": "2022-03",
+        "summary": "Co-founded a startup focused on AI-driven solutions; gained valuable experience in product development despite the venture closing."
+      },
+      {
+        "title": "ML Engineer",
+        "company": "Data Solutions",
+        "start_date": "2022-03",
+        "end_date": "present",
+        "summary": "Returned to an ML role, working on enhancing existing ML models with updated techniques and tools."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2016
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.5,
+    "github_url": "https://github.com/rajesh123",
+    "raw_text": "Experienced ML engineer with a background in data engineering, co-founded a startup where valuable skills were developed despite its closure, and currently enhancing ML models at Data Solutions.",
+    "confidence_level": "MEDIUM"
+  },
+  {
+    "candidate_id": "C019",
+    "type": "career_changer",
+    "name": "Anita Sharma",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "ML model training"
+    ],
+    "experience": [
+      {
+        "title": "Data Analyst",
+        "company": "Analytics Corp",
+        "start_date": "2018-06",
+        "end_date": "2021-06",
+        "summary": "Analyzed data trends and provided insights that led to business strategy improvements."
+      },
+      {
+        "title": "MBA Student",
+        "company": "IIM Bangalore",
+        "start_date": "2021-06",
+        "end_date": "2023-06",
+        "summary": "Full-time MBA program where I focused on business management while enhancing my technical skills in machine learning through coursework."
+      },
+      {
+        "title": "ML Engineer",
+        "company": "Freelance",
+        "start_date": "2023-06",
+        "end_date": "present",
+        "summary": "Completed Coursera ML specialization and deeplearning.ai courses, applying new knowledge in freelance projects."
+      }
+    ],
+    "education": {
+      "degree": "MBA",
+      "institution": "IIM Bangalore",
+      "graduation_year": 2023
+    },
+    "location": "Chennai",
+    "total_years_exp": 3.0,
+    "github_url": "https://github.com/anita-sharma",
+    "raw_text": "Data analyst who transitioned to an MBA and completed machine learning specializations on Coursera and deeplearning.ai to pivot back into a technical ML role, currently working on freelance projects.",
+    "confidence_level": "MEDIUM"
+  },
+  {
+    "candidate_id": "C020",
+    "type": "incomplete_profile",
+    "name": "John Doe",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "ML model training"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Tech Solutions",
+        "start_date": null,
+        "end_date": null,
+        "summary": "Led the development of machine learning models for various products, focusing on enhancing accuracy and performance."
+      },
+      {
+        "title": "ML Engineer",
+        "company": "Innovatech",
+        "start_date": "2019-07",
+        "end_date": "2022-12",
+        "summary": "Worked on training and deploying machine learning models in production environments."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech in Computer Science",
+      "institution": "IIT Kanpur",
+      "graduation_year": 2018
+    },
+    "location": null,
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/johndoe",
+    "raw_text": "A passionate machine learning engineer with experience in building and deploying ML models, particularly using Python and PyTorch.",
+    "confidence_level": "MEDIUM"
+  },
+  {
+    "candidate_id": "C021",
+    "type": "incomplete_profile",
+    "name": "Alice Smith",
+    "skills": [],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Data Insights",
+        "start_date": "2018-01",
+        "end_date": "2022-08",
+        "summary": "Specialized in developing ML algorithms for predictive analytics and optimization."
+      },
+      {
+        "title": "Junior ML Engineer",
+        "company": "NextGen Tech",
+        "start_date": "2016-06",
+        "end_date": "2017-12",
+        "summary": "Assisted in the implementation of machine learning solutions across various projects."
+      }
+    ],
+    "education": {
+      "degree": "B.Tech in Computer Science",
+      "institution": "NIT Trichy",
+      "graduation_year": 2015
+    },
+    "location": "Bangalore",
+    "total_years_exp": 6.0,
+    "github_url": "https://github.com/alicesmith",
+    "raw_text": "Experienced in Python, TensorFlow, and model training, I have worked on various ML projects that have successfully improved decision-making processes.",
+    "confidence_level": "LOW"
+  },
+  {
+    "candidate_id": "C022",
+    "type": "incomplete_profile",
+    "name": "Bob Johnson",
+    "skills": [],
+    "experience": [],
+    "education": {
+      "degree": null,
+      "institution": null,
+      "graduation_year": null
+    },
+    "location": null,
+    "total_years_exp": 0.0,
+    "github_url": null,
+    "raw_text": "An aspiring machine learning engineer with a strong foundation in Python and a keen interest in developing scalable ML applications, eager to learn and contribute to innovative projects.",
+    "confidence_level": "LOW"
+  },
+  {
+    "candidate_id": "C023",
+    "type": "duplicate",
+    "name": "Arjun S. Mehta",
+    "skills": [
+      "Python",
+      "PyTorch",
+      "ML model training"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Top Indian Startup",
+        "start_date": "2018-05",
+        "end_date": "present",
+        "summary": "Led the development of machine learning models that increased product efficiency and reduced latency."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Bombay",
+      "graduation_year": 2019
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/username",
+    "raw_text": "Experienced ML engineer with over 5 years at a leading startup, specializing in machine learning model development and deployment.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C024",
+    "type": "duplicate",
+    "name": "Arjun Mehta",
+    "skills": [
+      "Python"
+    ],
+    "experience": [
+      {
+        "title": "Senior ML Engineer",
+        "company": "Top Indian Startup",
+        "start_date": "2018-05",
+        "end_date": "present",
+        "summary": "Led the development of machine learning models that increased product efficiency and reduced latency."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Bombay",
+      "graduation_year": 2019
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/username",
+    "raw_text": "ML engineer with 5 years of experience at a major startup, working on machine learning models to improve product efficiency.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C025",
+    "type": "github_active",
+    "name": "Aarav Sharma",
+    "skills": [
+      "Python",
+      "SQL",
+      "Git"
+    ],
+    "experience": [
+      {
+        "title": "Data Engineer",
+        "company": "Tech Solutions Inc.",
+        "start_date": "2020-01",
+        "end_date": "2023-12",
+        "summary": "Worked on data projects and contributed to ML pipeline."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Bombay",
+      "graduation_year": 2018
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.0,
+    "github_url": "https://github.com/aarav-devml",
+    "raw_text": "Experienced in various data projects with a focus on machine learning pipelines and development.",
+    "confidence_level": "MEDIUM"
+  },
+  {
+    "candidate_id": "C026",
+    "type": "github_active",
+    "name": "Nisha Rao",
+    "skills": [
+      "Python",
+      "SQL",
+      "Git"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Innovatech Pvt Ltd",
+        "start_date": "2019-05",
+        "end_date": "2023-08",
+        "summary": "Contributed to ML pipeline and worked on various projects."
+      }
+    ],
+    "education": {
+      "degree": "M.Tech Computer Science",
+      "institution": "IIT Delhi",
+      "graduation_year": 2019
+    },
+    "location": "remote",
+    "total_years_exp": 4.5,
+    "github_url": "https://github.com/nisha-devml",
+    "raw_text": "Involved in various machine learning projects and development activities.",
+    "confidence_level": "MEDIUM"
+  },
+  {
+    "candidate_id": "C027",
+    "type": "poor_match",
+    "name": "Rahul Sharma",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Bloomberg Terminal",
+      "financial modelling",
+      "PowerPoint",
+      "VBA"
+    ],
+    "experience": [
+      {
+        "title": "Finance Analyst",
+        "company": "Tata Consultancy Services",
+        "start_date": "2020-01",
+        "end_date": "2023-12",
+        "summary": "Conducted equity research and financial analysis for various clients, providing insights that improved investment strategies."
+      }
+    ],
+    "education": {
+      "degree": "B.Com Finance",
+      "institution": "University of Delhi",
+      "graduation_year": 2019
+    },
+    "location": "Chennai",
+    "total_years_exp": 4.0,
+    "github_url": null,
+    "raw_text": "Rahul is a finance analyst with expertise in financial modelling and investment banking, having worked to provide data-driven insights in equity research for TCS, and holds a B.Com in Finance from the University of Delhi.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C028",
+    "type": "poor_match",
+    "name": "Ananya Gupta",
+    "skills": [
+      "legal research",
+      "contract drafting",
+      "compliance",
+      "LexisNexis",
+      "MS Word"
+    ],
+    "experience": [
+      {
+        "title": "Legal Associate",
+        "company": "Khaitan & Co.",
+        "start_date": "2019-05",
+        "end_date": "2023-09",
+        "summary": "Provided legal counsel and drafted contracts for corporate clients, ensuring compliance with regulatory requirements."
+      }
+    ],
+    "education": {
+      "degree": "LL.B.",
+      "institution": "National Law University, Delhi",
+      "graduation_year": 2018
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.4,
+    "github_url": null,
+    "raw_text": "Ananya is a legal professional with strong skills in legal research and compliance from Khaitan & Co., where she advised clients on regulatory matters and drafted contracts, holding an LL.B. from National Law University, Delhi.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C029",
+    "type": "poor_match",
+    "name": "Vikram Mehta",
+    "skills": [
+      "SEO",
+      "Google Analytics",
+      "HubSpot",
+      "copywriting",
+      "social media management",
+      "Canva"
+    ],
+    "experience": [
+      {
+        "title": "Marketing Manager",
+        "company": "Ogilvy India",
+        "start_date": "2018-06",
+        "end_date": "2023-11",
+        "summary": "Led digital marketing campaigns that enhanced brand visibility and engagement, utilizing analytics for strategic improvements."
+      }
+    ],
+    "education": {
+      "degree": "BBA Marketing",
+      "institution": "University of Mumbai",
+      "graduation_year": 2017
+    },
+    "location": "Chennai",
+    "total_years_exp": 5.5,
+    "github_url": null,
+    "raw_text": "Vikram is a marketing manager with a focus on digital campaigns at Ogilvy India, where he enhanced brand engagement through SEO and analytics, holding a BBA in Marketing from the University of Mumbai.",
+    "confidence_level": "HIGH"
+  },
+  {
+    "candidate_id": "C030",
+    "type": "poor_match",
+    "name": "Priya Nair",
+    "skills": [
+      "AutoCAD",
+      "STAAD Pro",
+      "structural analysis",
+      "project management",
+      "MS Project"
+    ],
+    "experience": [
+      {
+        "title": "Civil Engineer",
+        "company": "Larsen & Toubro",
+        "start_date": "2019-08",
+        "end_date": "2023-10",
+        "summary": "Managed civil engineering projects by designing structures and ensuring compliance with safety regulations."
+      }
+    ],
+    "education": {
+      "degree": "B.Tech Civil Engineering",
+      "institution": "Indian Institute of Technology, Kharagpur",
+      "graduation_year": 2018
+    },
+    "location": "Bangalore",
+    "total_years_exp": 5.2,
+    "github_url": null,
+    "raw_text": "Priya is a civil engineer at Larsen & Toubro, specializing in structural design and project management, and holds a B.Tech in Civil Engineering from IIT Kharagpur.",
+    "confidence_level": "HIGH"
+  }
+]

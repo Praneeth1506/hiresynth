@@ -1,0 +1,18 @@
+{
+  "total_candidates": 30,
+  "coverage": {
+    "strong_match": 5,
+    "good_match": 5,
+    "hidden_gem": 3,
+    "fresher": 2,
+    "overqualified": 2,
+    "career_changer": 2,
+    "incomplete_profile": 3,
+    "duplicate": 2,
+    "github_active": 2,
+    "poor_match": 4
+  },
+  "generated_at": "2026-06-17T05:39:21Z",
+  "target_jd": "Senior ML Engineer",
+  "notes": "Synthetic dataset for HireSynth pipeline testing"
+}
