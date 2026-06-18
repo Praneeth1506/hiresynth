@@ -478,6 +478,7 @@ def run_layer4(
     total_processed: int,
     job_id: str = "JD_001",
     pipeline_start: Optional[float] = None,
+    output_dir: Optional[str] = None,
 ) -> tuple[PipelineOutput, str, str]:
     """
     Layer 4 top-level orchestrator — evaluation, bias audit, and output.
@@ -547,8 +548,9 @@ def run_layer4(
     )
 
     # Step 6 — serialise
-    json_path = serialize_output(output)
-    csv_path  = serialize_output_csv(output)
+    out_dir = output_dir or "output"
+    json_path = serialize_output(output, output_path=f"{out_dir}/ranked_output.json")
+    csv_path  = serialize_output_csv(output, output_path=f"{out_dir}/ranked_output.csv")
 
     # Step 7 — log completion
     elapsed = time.time() - (pipeline_start if pipeline_start else start)
@@ -619,12 +621,13 @@ if __name__ == "__main__":
     print(f"\n  Layer 0: {len(normalized)} candidates normalised.\n")
 
     # --- Layer 1 ---
-    retrieved = run_layer1(jd_intent, normalized, top_k=50)
+    retrieved, model = run_layer1(jd_intent, normalized, top_k=50)
     print(f"\n  Layer 1: {len(retrieved)} candidates retrieved.\n")
 
     # --- Layer 2 ---
-    print("  Loading sentence-transformer for Layer 2...")
-    model = _ST("all-MiniLM-L6-v2")
+    if model is None:
+        print("  Layer 1 returned no model — loading separately...")
+        model = _ST("all-MiniLM-L6-v2")
     shortlist, hidden_gems, low_match_warning = run_layer2(
         jd_intent, retrieved, model, top_k=50
     )

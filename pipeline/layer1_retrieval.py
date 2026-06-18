@@ -303,7 +303,7 @@ def run_layer1(
     jd_intent: JDIntent,
     candidates: list[CandidateNormalized],
     top_k: int = 200,
-) -> list[CandidateNormalized]:
+) -> tuple[list[CandidateNormalized], Optional[SentenceTransformer]]:
     """
     Layer 1 top-level orchestrator — hybrid retrieval pipeline.
 
@@ -317,13 +317,15 @@ def run_layer1(
     8. Slice to top_k and log completion.
 
     Returns:
-        List of up to top_k CandidateNormalized objects ordered by RRF rank.
+        Tuple of (ranked_candidates, loaded_model).  The SentenceTransformer
+        model is returned so Layer 2 can reuse it without reloading from disk.
+        Both elements are None / empty list when candidates is empty.
     """
     start = time.time()
 
     if not candidates:
         log_warning("Layer 1: received 0 candidates — returning empty list.")
-        return []
+        return [], None
 
     effective_k = min(top_k, len(candidates))
 
@@ -363,7 +365,7 @@ def run_layer1(
     elapsed = time.time() - start
     log_layer_complete(layer=1, candidates_remaining=len(result), elapsed_seconds=elapsed)
 
-    return result
+    return result, model
 
 
 # ===========================================================================
@@ -408,7 +410,7 @@ if __name__ == "__main__":
     print(f"\n  Layer 0 complete: {len(normalized)} candidates passed.\n")
 
     # --- Run Layer 1 ---
-    retrieved = run_layer1(jd_intent, normalized, top_k=20)
+    retrieved, _model = run_layer1(jd_intent, normalized, top_k=20)
 
     # --- Results table ---
     print("\n  Rank | ID    | Type                     | RRF Rank Score")

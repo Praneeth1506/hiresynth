@@ -558,12 +558,13 @@ if __name__ == "__main__":
     print(f"\n  Layer 0: {len(normalized)} candidates normalised.\n")
 
     # --- Layer 1 ---
-    retrieved = run_layer1(jd_intent, normalized, top_k=50)
+    retrieved, model = run_layer1(jd_intent, normalized, top_k=50)
     print(f"\n  Layer 1: {len(retrieved)} candidates retrieved.\n")
 
     # --- Layer 2 ---
-    print("  Loading sentence-transformer for Layer 2...")
-    model = _ST("all-MiniLM-L6-v2")
+    if model is None:
+        print("  Layer 1 returned no model — loading separately...")
+        model = _ST("all-MiniLM-L6-v2")
     shortlist, _hidden_gems, _low_match = run_layer2(
         jd_intent, retrieved, model, top_k=50
     )

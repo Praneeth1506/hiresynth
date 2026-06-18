@@ -1,0 +1,10 @@
+sentence-transformers==3.0.1
+faiss-cpu==1.7.4
+rank-bm25==0.2.2
+openai==2.42.0
+pandas==2.2.0
+numpy==1.26.4
+python-dotenv==1.0.1
+requests==2.32.0
+spacy==3.7.6
+tqdm==4.66.4

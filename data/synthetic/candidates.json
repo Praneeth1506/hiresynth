@@ -294,11 +294,18 @@
     ],
     "experience": [
       {
-        "title": "Machine Learning Engineer",
+        "title": "Lead ML Engineer",
         "company": "Innovatech Solutions",
-        "start_date": "2021-01",
+        "start_date": "2022-06",
         "end_date": "2024-08",
-        "summary": "Led the development of predictive models to enhance product features, resulting in a 30% increase in user engagement."
+        "summary": "Led a team of 4 engineers building real-time recommendation models deployed to 2M users; mentored junior engineers and drove a 30% uplift in CTR."
+      },
+      {
+        "title": "Junior ML Engineer",
+        "company": "DataTech Ventures",
+        "start_date": "2020-09",
+        "end_date": "2022-05",
+        "summary": "Built data pipelines and trained baseline classifiers using PyTorch; migrated legacy ETL scripts to Python."
       }
     ],
     "education": {
@@ -307,7 +314,7 @@
       "graduation_year": 2018
     },
     "location": "Bangalore",
-    "total_years_exp": 3.7,
+    "total_years_exp": 3.8,
     "github_url": "https://github.com/rahulsharma",
     "raw_text": "Despite a relatively short experience, Rahul has rapidly ascended from an analyst role to an MLE position, showcasing remarkable adaptability and a passion for machine learning evidenced by his active contributions on GitHub.",
     "confidence_level": "HIGH"
@@ -322,11 +329,18 @@
     ],
     "experience": [
       {
-        "title": "Machine Learning Engineer",
+        "title": "Lead ML Engineer",
         "company": "TechnoLabs",
-        "start_date": "2020-05",
+        "start_date": "2022-01",
         "end_date": "2024-08",
-        "summary": "Developed and optimized machine learning models for client projects, achieving high accuracy and reducing project delivery time by 20%."
+        "summary": "Led delivery of client-facing ML products, reducing model delivery time by 20% through automated pipelines and TensorFlow Serving."
+      },
+      {
+        "title": "Junior Data Scientist",
+        "company": "InnovateTech Labs",
+        "start_date": "2020-05",
+        "end_date": "2021-12",
+        "summary": "Performed EDA, feature engineering, and prototyped TensorFlow models for A/B test reporting dashboards."
       }
     ],
     "education": {
@@ -335,7 +349,7 @@
       "graduation_year": 2019
     },
     "location": "Chennai",
-    "total_years_exp": 4.3,
+    "total_years_exp": 4.2,
     "github_url": "https://github.com/sneha-iyer",
     "raw_text": "Sneha's journey from a data analyst to an MLE reflects her quick learning and impactful contributions, particularly in model optimization and implementation, with a vibrant GitHub portfolio showcasing her projects.",
     "confidence_level": "HIGH"
@@ -350,11 +364,18 @@
     ],
     "experience": [
       {
-        "title": "Machine Learning Engineer",
+        "title": "Lead ML Engineer",
         "company": "NextGen Tech",
-        "start_date": "2019-08",
+        "start_date": "2022-01",
         "end_date": "2024-08",
-        "summary": "Played a key role in developing scalable ML solutions, with significant improvements in system performance and reliability."
+        "summary": "Architected scalable ML infrastructure handling 500K daily predictions; spearheaded system performance improvements in reliability."
+      },
+      {
+        "title": "Junior Data Analyst",
+        "company": "TechStartup India",
+        "start_date": "2019-08",
+        "end_date": "2021-12",
+        "summary": "Automated reporting pipelines in Python and built first-generation PyTorch prototypes for anomaly detection."
       }
     ],
     "education": {
@@ -363,7 +384,7 @@
       "graduation_year": 2018
     },
     "location": "Hyderabad",
-    "total_years_exp": 5.0,
+    "total_years_exp": 4.9,
     "github_url": "https://github.com/arjunpatel",
     "raw_text": "Arjun has demonstrated impressive growth within a short span, progressing within his roles and consistently delivering innovative ML solutions, clearly visible through his dynamic GitHub activity.",
     "confidence_level": "HIGH"
