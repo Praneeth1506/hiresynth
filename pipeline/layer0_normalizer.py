@@ -386,17 +386,75 @@ def _clean_skill_phrases(skills: list[str]) -> list[str]:
     return cleaned
 
 
+_CACHE_PATH = Path(__file__).parent.parent / "data" / "llm_cache.json"
+_CACHE_VERSION = "1.0"
+
+
+def _jd_cache_key(jd_text: str) -> str:
+    """Return an 8-char md5 hex digest of the raw JD text."""
+    return hashlib.md5(jd_text.encode("utf-8")).hexdigest()[:8]
+
+
+def _load_jd_cache(jd_hash: str) -> Optional[JDIntent]:
+    """
+    Return a cached JDIntent if the cache file exists and the jd_hash matches.
+
+    Returns None on any miss, version mismatch, or parse error.
+    """
+    if not _CACHE_PATH.exists():
+        return None
+    try:
+        data = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
+        jd_section = data.get("jd_parse", {})
+        if (
+            data.get("cache_version") == _CACHE_VERSION
+            and jd_section.get("jd_hash") == jd_hash
+        ):
+            intent_dict = jd_section.get("intent")
+            if isinstance(intent_dict, dict):
+                return JDIntent(**intent_dict)
+    except (json.JSONDecodeError, KeyError, TypeError, OSError):
+        pass
+    return None
+
+
+def _save_jd_cache(jd_hash: str, intent: JDIntent) -> None:
+    """Upsert the jd_parse section of the shared cache file."""
+    import dataclasses
+
+    existing: dict = {}
+    if _CACHE_PATH.exists():
+        try:
+            existing = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            existing = {}
+
+    existing["cache_version"] = _CACHE_VERSION
+    existing["jd_parse"] = {
+        "jd_hash": jd_hash,
+        "intent": dataclasses.asdict(intent),
+    }
+
+    _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    _CACHE_PATH.write_text(
+        json.dumps(existing, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
 def parse_jd(jd_text: str, job_id: str) -> JDIntent:
     """
     Parse a raw job-description string into a validated JDIntent.
 
     Steps:
       1. Validate JD text length — return safe default on failure.
-      2. Score quality (0-100) using signal heuristics.
-      3. Call GPT-4o-mini to extract structured intent JSON.
-      4. Validate and fill defaults via validate_jd_parse_output.
-      5. Detect multi-role JDs.
-      6. If quality LOW: merge FALLBACK_SKILLS for detected domain.
+      2. Check JD parse cache — return cached intent on hit, skip LLM.
+      3. Score quality (0-100) using signal heuristics.
+      4. Call GPT-4o-mini to extract structured intent JSON.
+      5. Validate and fill defaults via validate_jd_parse_output.
+      6. Detect multi-role JDs.
+      7. If quality LOW: merge FALLBACK_SKILLS for detected domain.
+      8. Save result to cache.
     """
     # Step 1 — validate
     ok, reason = validate_jd_text(jd_text)
@@ -410,7 +468,15 @@ def parse_jd(jd_text: str, job_id: str) -> JDIntent:
             quality_score=0.0, quality_level="LOW",
         )
 
-    # Step 2 — quality score
+    # Step 2 — cache check
+    jd_hash = _jd_cache_key(jd_text)
+    cached = _load_jd_cache(jd_hash)
+    if cached is not None:
+        cached.job_id = job_id  # job_id is call-site metadata, not cached
+        print(f"  → JD parse cache hit (hash={jd_hash})")
+        return cached
+
+    # Step 3 — quality score
     quality_score, quality_level = _score_jd_quality(jd_text)
 
     # Step 3 — LLM extraction
@@ -494,6 +560,9 @@ def parse_jd(jd_text: str, job_id: str) -> JDIntent:
     intent.weights = _adjust_weights_for_role_type(
         intent.weights, intent.domain, intent.seniority
     )
+
+    # Step 9 — save to cache
+    _save_jd_cache(jd_hash, intent)
 
     return intent
 

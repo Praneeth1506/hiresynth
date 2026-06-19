@@ -97,9 +97,9 @@ SENIORITY_RANGES: dict[str, tuple[int, int]] = {
 
 # Tier thresholds (applied to fusion_score_100).
 _TIER_THRESHOLDS = [
-    (75.0, "strong_match"),
-    (55.0, "good_match"),
-    (40.0, "borderline"),
+    (60.0, "strong_match"),
+    (48.0, "good_match"),
+    (38.0, "borderline"),
 ]
 
 

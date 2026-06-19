@@ -88,6 +88,8 @@ def _format_education(education: Optional[list | dict]) -> str:
 def build_candidate_summary(
     scored: ScoredCandidate,
     candidate: CandidateNormalized,
+    rank: int = 0,
+    total: int = 0,
     max_tokens: int = 500,
 ) -> str:
     """
@@ -95,8 +97,8 @@ def build_candidate_summary(
 
     Uses Candidate_ID, never name (bias prevention).  Includes the last 3
     experience entries, top 10 skills, education, trajectory, signal scores,
-    and GitHub score when available.  Total length is capped at
-    max_tokens * 4 characters (approximate token budget at 4 chars/token).
+    pipeline rank context, and GitHub score when available.  Total length is
+    capped at max_tokens * 4 characters (approximate token budget at 4 chars/token).
 
     Returns:
         Multi-line string ready to embed in the user prompt.
@@ -145,7 +147,13 @@ def build_candidate_summary(
         f"  Trajectory:    {traj_pct}\n"
         f"  Recency:       {recency_pct}\n"
         f"  Seniority:     {scored.seniority_label or 'unknown'}\n"
-        f"FUSION SCORE: {scored.signal_fusion_score:.1f}/100"
+        f"FUSION SCORE: {scored.signal_fusion_score:.1f}/100\n"
+        + (
+            f"PIPELINE RANK: {rank} of {total}\n"
+            f"RANKING BASIS: This candidate ranked highly due to career trajectory "
+            f"and growth signals, not skills alone. Evaluate fit holistically."
+            if rank and total else ""
+        )
     )
 
     # Hard truncate to max_tokens * 4 characters
@@ -163,6 +171,7 @@ def build_candidate_summary(
 def build_rerank_prompt(
     candidate_summary: str,
     jd_intent: JDIntent,
+    trajectory_label: Optional[str] = None,
 ) -> tuple[str, str]:
     """
     Build the (system_prompt, user_prompt) pair sent to GPT-4o-mini.
@@ -170,6 +179,9 @@ def build_rerank_prompt(
     The system prompt establishes the recruiter persona and strict format
     adherence.  The user prompt embeds the role requirements and candidate
     profile, and enforces the four-line output contract.
+
+    trajectory_label: when 'high_growth' or 'steady_climb', a note is appended
+    to the user prompt asking the LLM to weight potential alongside skill gaps.
 
     Returns:
         (system_prompt, user_prompt) tuple of plain strings.
@@ -179,11 +191,21 @@ def build_rerank_prompt(
         "Evaluate candidates against job requirements.\n"
         "Be precise, honest, and concise.\n"
         "Always respond in exactly the format requested.\n"
-        "Never add extra commentary outside the format."
+        "Never add extra commentary outside the format.\n"
+        "If a candidate ranks in the top 5, do not recommend Pass unless skills "
+        "score is below 0.20. Instead use 'Consider with reservations' for "
+        "candidates with strong trajectory but skill gaps."
     )
 
     must_have_str = ", ".join(jd_intent.must_have)
     nice_have_str = ", ".join(jd_intent.nice_have)
+
+    growth_trajectories = {"high_growth", "steady_climb"}
+    trajectory_note = (
+        "\nNote: This candidate shows strong career growth trajectory. "
+        "Weight potential and learning ability alongside current skill gaps."
+        if trajectory_label in growth_trajectories else ""
+    )
 
     user_prompt = (
         "Evaluate this candidate for the following role.\n\n"
@@ -193,7 +215,8 @@ def build_rerank_prompt(
         f"Seniority: {jd_intent.seniority}\n"
         f"Domain: {jd_intent.domain}\n\n"
         "CANDIDATE PROFILE:\n"
-        f"{candidate_summary}\n\n"
+        f"{candidate_summary}\n"
+        f"{trajectory_note}\n"
         "Respond in EXACTLY this format, nothing else:\n"
         "STRENGTH: [one sentence — strongest qualification]\n"
         "GAP: [one sentence — key missing skill or risk]\n"
@@ -355,9 +378,12 @@ async def rerank_all_async(
         timeout) and triggers the llm_rerank=False fallback path.
     """
     # Build prompts and launch coroutines
+    total = len(candidates_with_summaries)
     coroutines = []
-    for scored, summary in candidates_with_summaries:
-        sys_p, usr_p = build_rerank_prompt(summary, jd_intent)
+    for rank_idx, (scored, summary) in enumerate(candidates_with_summaries, start=1):
+        sys_p, usr_p = build_rerank_prompt(
+            summary, jd_intent, trajectory_label=scored.trajectory_label
+        )
         coroutines.append(call_llm_async(client, sys_p, usr_p, semaphore))
 
     responses: list[str] = await asyncio.gather(*coroutines)
@@ -396,7 +422,7 @@ def merge_scores(
       — Stores llm_score_100 in llm_rerank_score (display only).
       — Attaches the reasoning card.
       — Sets llm_rerank / score_conflict / reasoning_verified flags.
-      — Appends a note to recommendation when conflict is detected (> 15 pts).
+      — Sets reasoning.conflict_note when |llm_score − fusion_score| > 15 pts.
 
     What this function does NOT do:
       — Modify final_score in any path (LLM has zero influence on rank order).
@@ -410,10 +436,8 @@ def merge_scores(
     else:
         scored.flags.llm_rerank = True
         if conflict:
-            reasoning.recommendation = (
-                reasoning.recommendation
-                + " [Note: LLM assessment diverged significantly from signal"
-                " fusion score — manual review recommended.]"
+            reasoning.conflict_note = (
+                "Signal fusion score overrides LLM — manual review recommended."
             )
             log_warning(
                 f"Layer 3 conflict — {scored.candidate_id}: "
@@ -449,34 +473,44 @@ def _compute_cache_key(jd_text: str, candidate_ids: list[str]) -> str:
 
 def _load_llm_cache(cache_key: str) -> Optional[dict]:
     """
-    Load cached LLM responses if the cache file exists and the key matches.
+    Load cached LLM responses from the shared cache file.
 
-    Returns the responses dict on a hit, None on any miss or parse error.
+    Checks cache_version at the top level and run_hash inside the
+    llm_responses section.  Returns the per-candidate responses dict on a
+    hit, None on any miss, version mismatch, or parse error.
     """
     if not _CACHE_PATH.exists():
         return None
     try:
         data = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
-        if (
-            data.get("cache_version") == _CACHE_VERSION
-            and data.get("jd_hash") == cache_key
-        ):
-            return data.get("responses", {})
+        if data.get("cache_version") != _CACHE_VERSION:
+            return None
+        llm_section = data.get("llm_responses", {})
+        if llm_section.get("run_hash") == cache_key:
+            return llm_section.get("responses", {})
     except (json.JSONDecodeError, KeyError, OSError):
         pass
     return None
 
 
 def _save_llm_cache(cache_key: str, responses: dict) -> None:
-    """Persist LLM responses to the cache file, creating directories as needed."""
-    _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    cache_data = {
-        "cache_version": _CACHE_VERSION,
-        "jd_hash": cache_key,
+    """Upsert the llm_responses section of the shared cache file."""
+    existing: dict = {}
+    if _CACHE_PATH.exists():
+        try:
+            existing = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            existing = {}
+
+    existing["cache_version"] = _CACHE_VERSION
+    existing["llm_responses"] = {
+        "run_hash": cache_key,
         "responses": responses,
     }
+
+    _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     _CACHE_PATH.write_text(
-        json.dumps(cache_data, indent=2, ensure_ascii=False),
+        json.dumps(existing, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
 
@@ -518,17 +552,19 @@ def run_layer3(
     top_50 = scored_candidates[:50]
 
     # Step 2 — build summaries
+    total_in_pool = len(top_50)
     candidates_with_summaries: list[tuple[ScoredCandidate, str]] = []
-    for sc in top_50:
+    for idx, sc in enumerate(top_50, start=1):
         norm = candidates_map.get(sc.candidate_id)
         if norm is None:
             # Provide minimal summary when mapping is missing
             summary = (
                 f"CANDIDATE: {sc.candidate_id}\n"
-                f"FUSION SCORE: {sc.signal_fusion_score:.1f}/100"
+                f"FUSION SCORE: {sc.signal_fusion_score:.1f}/100\n"
+                f"PIPELINE RANK: {idx} of {total_in_pool}"
             )
         else:
-            summary = build_candidate_summary(sc, norm)
+            summary = build_candidate_summary(sc, norm, rank=idx, total=total_in_pool)
         candidates_with_summaries.append((sc, summary))
 
     # Step 3 — async LLM calls (with optional cache)

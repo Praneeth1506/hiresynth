@@ -149,11 +149,12 @@ class ReasoningCard:
     Three mandatory sentences plus a 1–10 score.
     """
 
-    strength: str           # top strength in one sentence
-    gap: str                # key gap or risk in one sentence
-    recommendation: str     # recruiter recommendation in one sentence
-    llm_score: int          # 1–10
-    verified: bool = True   # False when fusion/LLM conflict detected
+    strength: str                        # top strength in one sentence
+    gap: str                             # key gap or risk in one sentence
+    recommendation: str                  # recruiter recommendation in one sentence
+    llm_score: int                       # 1–10
+    verified: bool = True                # False when fusion/LLM conflict detected
+    conflict_note: Optional[str] = None  # set when |llm_score - fusion_score| > 15
 
 
 # ---------------------------------------------------------------------------
