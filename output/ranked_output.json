@@ -1,0 +1,1752 @@
+{
+  "metadata": {
+    "job_id": "JD_001",
+    "job_title": "Senior Machine Learning Engineer",
+    "jd_quality_score": 85.0,
+    "jd_quality_level": "HIGH",
+    "total_candidates_processed": 30,
+    "total_candidates_shortlisted": 20,
+    "low_match_warning": false,
+    "pipeline_version": "1.0.0",
+    "generated_at": "2026-06-19T08:39:15Z",
+    "run_hash": "4c4fd677",
+    "exit_status": "EXIT_SUCCESS",
+    "candidates_at_each_stage": {
+      "after_layer0": 29,
+      "after_layer1": 29,
+      "after_layer2": 29,
+      "after_layer3": 20
+    },
+    "signal_weights_used": {
+      "skills": 0.6,
+      "trajectory": 0.2,
+      "recency": 0.1,
+      "behavioral": 0.05,
+      "seniority": 0.05
+    },
+    "skill_threshold_used": 0.65,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "hidden_gems_note": "High-trajectory candidates already present in top-10 shortlist. Hidden gem tier activates when strong-trajectory candidates fall outside the main shortlist."
+  },
+  "shortlist": [
+    {
+      "rank": 1,
+      "candidate_id": "C005",
+      "final_score": 62.89,
+      "signal_fusion_score": 61.0,
+      "llm_rerank_score": 60.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.3
+        },
+        "trajectory": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.13999999999999999
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "strong_match",
+      "reasoning": {
+        "strength": "Strong experience in Python, PyTorch, TensorFlow, and MLOps with a solid career trajectory.",
+        "gap": "Lacks experience with Kubernetes and other nice-to-have skills.",
+        "recommendation": "Consider with reservations due to strong trajectory but skill gaps.",
+        "llm_score": 6,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "ML model training",
+        "MLOps"
+      ],
+      "skills_missing": [
+        "3+ years ML experience",
+        "Kubernetes"
+      ],
+      "experience_years": 8.5,
+      "trajectory_label": "steady_climb",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "VikramSharma",
+        "public_repos": 0,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 12.284931506849315,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 2,
+      "candidate_id": "C002",
+      "final_score": 57.67,
+      "signal_fusion_score": 55.5,
+      "llm_rerank_score": 60.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.24
+        },
+        "trajectory": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.13999999999999999
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.8,
+          "normalized": 0.8,
+          "weighted": 0.04000000000000001
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.31,
+          "normalized": 0.31,
+          "weighted": 2.17
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong experience in ML engineering with a solid educational background from IIT Delhi.",
+        "gap": "Lacks experience in PyTorch, MLOps, and has limited exposure to NLP and computer vision.",
+        "recommendation": "Consider with reservations due to strong trajectory but skill gaps in key areas.",
+        "llm_score": 6,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow",
+        "ML model training",
+        "Kubernetes"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "3+ years ML experience",
+        "MLOps"
+      ],
+      "experience_years": 7.3,
+      "trajectory_label": "steady_climb",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "ananyasingh",
+        "public_repos": 8,
+        "total_stars": 0,
+        "top_languages": [
+          "Java"
+        ],
+        "last_push_date": null,
+        "account_age_years": 11.58904109589041,
+        "followers": 0,
+        "github_score": 0.31,
+        "verified": true
+      }
+    },
+    {
+      "rank": 3,
+      "candidate_id": "C003",
+      "final_score": 56.54,
+      "signal_fusion_score": 53.25,
+      "llm_rerank_score": 60.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4375,
+          "normalized": 0.4375,
+          "weighted": 0.2625
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.47,
+          "normalized": 0.47,
+          "weighted": 3.29
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong experience in Python, TensorFlow, and ML model training with over 7 years in the field.",
+        "gap": "Lacks experience in MLOps and Kubernetes, which are critical for the role.",
+        "recommendation": "Consider with reservations due to strong trajectory but missing key skills.",
+        "llm_score": 6,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 7.1,
+      "trajectory_label": "lateral",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "arjunmenon",
+        "public_repos": 635,
+        "total_stars": 7,
+        "top_languages": [
+          "CSS",
+          "Ruby",
+          "JavaScript"
+        ],
+        "last_push_date": null,
+        "account_age_years": 14.887671232876713,
+        "followers": 16,
+        "github_score": 0.47,
+        "verified": true
+      }
+    },
+    {
+      "rank": 4,
+      "candidate_id": "C018",
+      "final_score": 54.89,
+      "signal_fusion_score": 53.0,
+      "llm_rerank_score": 50.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.24
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.1
+        },
+        "behavioral": {
+          "raw": 0.8,
+          "normalized": 0.8,
+          "weighted": 0.04000000000000001
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": true,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong experience in Python, PyTorch, and TensorFlow with over 9 years in the field.",
+        "gap": "Lacks experience in MLOps, Kubernetes, and other nice-to-have skills.",
+        "recommendation": "Consider with reservations due to strong experience but significant skill gaps.",
+        "llm_score": 5,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 9.4,
+      "trajectory_label": "stagnant",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "rajesh123",
+        "public_repos": 0,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 14.734246575342466,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 5,
+      "candidate_id": "C001",
+      "final_score": 52.89,
+      "signal_fusion_score": 51.0,
+      "llm_rerank_score": 50.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.24
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong experience in Python, PyTorch, and MLOps with over 5 years in machine learning roles.",
+        "gap": "Lacks experience with TensorFlow, Kubernetes, and other key requirements.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 5,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "ML model training",
+        "MLOps"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "3+ years ML experience",
+        "Kubernetes"
+      ],
+      "experience_years": 5.4,
+      "trajectory_label": "lateral",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "ravikumar",
+        "public_repos": 0,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 18.19178082191781,
+        "followers": 9,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 6,
+      "candidate_id": "C004",
+      "final_score": 52.89,
+      "signal_fusion_score": 51.0,
+      "llm_rerank_score": 50.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.24
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong experience in Python, PyTorch, and TensorFlow with a solid background in ML model training.",
+        "gap": "Lacks experience in MLOps and Kubernetes, which are critical for the role.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 5,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "TensorFlow",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 5.9,
+      "trajectory_label": "lateral",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "sneha-reddy",
+        "public_repos": 2,
+        "total_stars": 0,
+        "top_languages": [
+          "Java"
+        ],
+        "last_push_date": null,
+        "account_age_years": 7.945205479452055,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 7,
+      "candidate_id": "C011",
+      "final_score": 52.26,
+      "signal_fusion_score": 48.9,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.2
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 0.98,
+          "normalized": 0.98,
+          "weighted": 0.049
+        },
+        "github_boost": {
+          "raw": 0.48,
+          "normalized": 0.48,
+          "weighted": 3.36
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong career growth trajectory with relevant experience in machine learning.",
+        "gap": "Lacks essential skills in MLOps, Kubernetes, and TensorFlow.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 3.9,
+      "trajectory_label": "high_growth",
+      "seniority_label": "underqualified",
+      "location_match": null,
+      "github_profile": {
+        "username": "RahulSharma",
+        "public_repos": 3,
+        "total_stars": 0,
+        "top_languages": [
+          "CSS"
+        ],
+        "last_push_date": "2026-06-07",
+        "account_age_years": 14.942465753424658,
+        "followers": 2,
+        "github_score": 0.48,
+        "verified": true
+      }
+    },
+    {
+      "rank": 8,
+      "candidate_id": "C013",
+      "final_score": 51.92,
+      "signal_fusion_score": 49.0,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.2
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.416667,
+          "normalized": 0.416667,
+          "weighted": 2.9167
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong career growth trajectory with relevant experience as a Lead ML Engineer.",
+        "gap": "Lacks essential skills in TensorFlow, ML model training, MLOps, and Kubernetes.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 4.9,
+      "trajectory_label": "high_growth",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "arjunpatel",
+        "public_repos": 13,
+        "total_stars": 0,
+        "top_languages": [
+          "Python",
+          "JavaScript",
+          "Ruby"
+        ],
+        "last_push_date": null,
+        "account_age_years": 14.361643835616439,
+        "followers": 9,
+        "github_score": 0.416667,
+        "verified": true
+      }
+    },
+    {
+      "rank": 9,
+      "candidate_id": "C012",
+      "final_score": 50.89,
+      "signal_fusion_score": 49.0,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.2
+        },
+        "recency": {
+          "raw": 0.85,
+          "normalized": 0.85,
+          "weighted": 0.085
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "good_match",
+      "reasoning": {
+        "strength": "Strong career growth trajectory with relevant experience as a Lead ML Engineer.",
+        "gap": "Lacks essential skills in PyTorch, MLOps, and Kubernetes.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 4.2,
+      "trajectory_label": "high_growth",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "sneha-iyer",
+        "public_repos": 1,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 8.227397260273973,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 10,
+      "candidate_id": "C019",
+      "final_score": 49.92,
+      "signal_fusion_score": 47.0,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.3,
+          "normalized": 0.3,
+          "weighted": 0.18
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.1
+        },
+        "behavioral": {
+          "raw": 0.8,
+          "normalized": 0.8,
+          "weighted": 0.04000000000000001
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.416667,
+          "normalized": 0.416667,
+          "weighted": 2.9167
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": true,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "The candidate has a solid foundation in Python and TensorFlow with relevant ML experience.",
+        "gap": "The candidate lacks experience in MLOps, Kubernetes, and other essential skills listed in the job requirements.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 8.0,
+      "trajectory_label": "lateral",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "anita-sharma",
+        "public_repos": 16,
+        "total_stars": 2,
+        "top_languages": [
+          "HTML",
+          "JavaScript",
+          "C"
+        ],
+        "last_push_date": null,
+        "account_age_years": 6.389041095890411,
+        "followers": 1,
+        "github_score": 0.416667,
+        "verified": true
+      }
+    },
+    {
+      "rank": 11,
+      "candidate_id": "C016",
+      "final_score": 47.1,
+      "signal_fusion_score": 47.1,
+      "llm_rerank_score": 50.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.3
+        },
+        "trajectory": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.04000000000000001
+        },
+        "recency": {
+          "raw": 0.75,
+          "normalized": 0.75,
+          "weighted": 0.07500000000000001
+        },
+        "behavioral": {
+          "raw": 0.6,
+          "normalized": 0.6,
+          "weighted": 0.03
+        },
+        "seniority": {
+          "raw": 0.5200000000000001,
+          "normalized": 0.5200000000000001,
+          "weighted": 0.02600000000000001
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": true,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "Strong leadership experience in AI and ML with over a decade in senior roles.",
+        "gap": "Lacks experience with PyTorch and key nice-to-have skills such as NLP and distributed training.",
+        "recommendation": "Consider with reservations due to strong experience but significant skill gaps.",
+        "llm_score": 5,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow",
+        "ML model training",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "3+ years ML experience"
+      ],
+      "experience_years": 13.2,
+      "trajectory_label": "stagnant",
+      "seniority_label": "overqualified",
+      "location_match": null,
+      "github_profile": null
+    },
+    {
+      "rank": 12,
+      "candidate_id": "C023",
+      "final_score": 44.8,
+      "signal_fusion_score": 44.8,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.3,
+          "normalized": 0.3,
+          "weighted": 0.18
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.1
+        },
+        "behavioral": {
+          "raw": 0.76,
+          "normalized": 0.76,
+          "weighted": 0.038000000000000006
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "Strong experience as a Senior ML Engineer with over 8 years in the field.",
+        "gap": "Lacks essential skills in MLOps, Kubernetes, and TensorFlow.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 8.1,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": null
+    },
+    {
+      "rank": 13,
+      "candidate_id": "C020",
+      "final_score": 42.57,
+      "signal_fusion_score": 40.4,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.3,
+          "normalized": 0.3,
+          "weighted": 0.18
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 0.65,
+          "normalized": 0.65,
+          "weighted": 0.065
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 0.88,
+          "normalized": 0.88,
+          "weighted": 0.044000000000000004
+        },
+        "github_boost": {
+          "raw": 0.31,
+          "normalized": 0.31,
+          "weighted": 2.17
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "The candidate has a solid foundation in Python and PyTorch with relevant ML experience.",
+        "gap": "The candidate lacks experience in MLOps, Kubernetes, and other key requirements.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "ML model training"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 3.4,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "underqualified",
+      "location_match": null,
+      "github_profile": {
+        "username": "johndoe",
+        "public_repos": 1,
+        "total_stars": 6,
+        "top_languages": [
+          "Ruby"
+        ],
+        "last_push_date": null,
+        "account_age_years": 17.684931506849313,
+        "followers": 85,
+        "github_score": 0.31,
+        "verified": true
+      }
+    },
+    {
+      "rank": 14,
+      "candidate_id": "C017",
+      "final_score": 41.13,
+      "signal_fusion_score": 41.13,
+      "llm_rerank_score": 50.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.4375,
+          "normalized": 0.4375,
+          "weighted": 0.2625
+        },
+        "trajectory": {
+          "raw": 0.1,
+          "normalized": 0.1,
+          "weighted": 0.020000000000000004
+        },
+        "recency": {
+          "raw": 0.75,
+          "normalized": 0.75,
+          "weighted": 0.07500000000000001
+        },
+        "behavioral": {
+          "raw": 0.6,
+          "normalized": 0.6,
+          "weighted": 0.03
+        },
+        "seniority": {
+          "raw": 0.475,
+          "normalized": 0.475,
+          "weighted": 0.02375
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": true,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "Strong experience as a Principal ML Architect with a solid background in MLOps and ML model training.",
+        "gap": "Lacks experience with TensorFlow, Kubernetes, and other nice-to-have skills.",
+        "recommendation": "Consider with reservations due to declining trajectory and skill gaps.",
+        "llm_score": 5,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "ML model training",
+        "MLOps"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "3+ years ML experience",
+        "Kubernetes"
+      ],
+      "experience_years": 13.5,
+      "trajectory_label": "declining",
+      "seniority_label": "overqualified",
+      "location_match": null,
+      "github_profile": null
+    },
+    {
+      "rank": 15,
+      "candidate_id": "C014",
+      "final_score": 40.4,
+      "signal_fusion_score": 40.4,
+      "llm_rerank_score": 30.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.3,
+          "normalized": 0.3,
+          "weighted": 0.18
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 0.75,
+          "normalized": 0.75,
+          "weighted": 0.07500000000000001
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 0.2799999999999999,
+          "normalized": 0.2799999999999999,
+          "weighted": 0.013999999999999997
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": true,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "borderline",
+      "reasoning": {
+        "strength": "Candidate has experience with Python, PyTorch, and TensorFlow.",
+        "gap": "Candidate lacks the required 3+ years of ML experience and MLOps skills.",
+        "recommendation": "Pass due to insufficient experience and key skill gaps.",
+        "llm_score": 3,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch",
+        "TensorFlow"
+      ],
+      "skills_missing": [
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 0.4,
+      "trajectory_label": "lateral",
+      "seniority_label": "underqualified",
+      "location_match": null,
+      "github_profile": null
+    },
+    {
+      "rank": 16,
+      "candidate_id": "C021",
+      "final_score": 38.89,
+      "signal_fusion_score": 37.0,
+      "llm_rerank_score": 30.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.1
+        },
+        "recency": {
+          "raw": 0.65,
+          "normalized": 0.65,
+          "weighted": 0.065
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "weak_match",
+      "reasoning": {
+        "strength": "The candidate has over 6 years of experience in machine learning and a solid foundation in Python and TensorFlow.",
+        "gap": "The candidate lacks experience with PyTorch, MLOps, Kubernetes, and does not meet the 3+ years ML experience requirement.",
+        "recommendation": "Pass due to significant skill gaps in essential areas for the role.",
+        "llm_score": 3,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 6.1,
+      "trajectory_label": "lateral",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "alicesmith",
+        "public_repos": 0,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 11.558904109589042,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 17,
+      "candidate_id": "C008",
+      "final_score": 37.8,
+      "signal_fusion_score": 37.8,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.1
+        },
+        "behavioral": {
+          "raw": 0.56,
+          "normalized": 0.56,
+          "weighted": 0.028000000000000004
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "weak_match",
+      "reasoning": {
+        "strength": "The candidate has significant experience in machine learning with a solid educational background from a prestigious institution.",
+        "gap": "The candidate lacks essential skills in MLOps, Kubernetes, and TensorFlow, which are critical for the role.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 7.8,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": null
+    },
+    {
+      "rank": 18,
+      "candidate_id": "C009",
+      "final_score": 36.89,
+      "signal_fusion_score": 35.0,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 0.65,
+          "normalized": 0.65,
+          "weighted": 0.065
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 1.0,
+          "normalized": 1.0,
+          "weighted": 0.05
+        },
+        "github_boost": {
+          "raw": 0.27,
+          "normalized": 0.27,
+          "weighted": 1.89
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "weak_match",
+      "reasoning": {
+        "strength": "The candidate has over 5 years of experience in machine learning and a relevant educational background.",
+        "gap": "The candidate lacks experience with PyTorch, MLOps, and Kubernetes, which are critical for the role.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 5.2,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "aligned",
+      "location_match": null,
+      "github_profile": {
+        "username": "vikram-singh",
+        "public_repos": 1,
+        "total_stars": 1,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 14.172602739726027,
+        "followers": 0,
+        "github_score": 0.27,
+        "verified": true
+      }
+    },
+    {
+      "rank": 19,
+      "candidate_id": "C007",
+      "final_score": 36.25,
+      "signal_fusion_score": 34.5,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 0.65,
+          "normalized": 0.65,
+          "weighted": 0.065
+        },
+        "behavioral": {
+          "raw": 0.7,
+          "normalized": 0.7,
+          "weighted": 0.034999999999999996
+        },
+        "seniority": {
+          "raw": 0.9,
+          "normalized": 0.9,
+          "weighted": 0.045000000000000005
+        },
+        "github_boost": {
+          "raw": 0.25,
+          "normalized": 0.25,
+          "weighted": 1.75
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": true,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "weak_match",
+      "reasoning": {
+        "strength": "The candidate has a solid foundation in Python and TensorFlow with 3.5 years of experience in machine learning.",
+        "gap": "The candidate lacks experience in PyTorch, MLOps, Kubernetes, and other key requirements.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "TensorFlow"
+      ],
+      "skills_missing": [
+        "PyTorch",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 3.5,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "underqualified",
+      "location_match": null,
+      "github_profile": {
+        "username": "Rahulverma",
+        "public_repos": 0,
+        "total_stars": 0,
+        "top_languages": [],
+        "last_push_date": null,
+        "account_age_years": 3.8657534246575342,
+        "followers": 1,
+        "github_score": 0.25,
+        "verified": true
+      }
+    },
+    {
+      "rank": 20,
+      "candidate_id": "C010",
+      "final_score": 33.3,
+      "signal_fusion_score": 33.3,
+      "llm_rerank_score": 40.0,
+      "signal_breakdown": {
+        "skills": {
+          "raw": 0.2,
+          "normalized": 0.2,
+          "weighted": 0.12
+        },
+        "trajectory": {
+          "raw": 0.4,
+          "normalized": 0.4,
+          "weighted": 0.08000000000000002
+        },
+        "recency": {
+          "raw": 0.65,
+          "normalized": 0.65,
+          "weighted": 0.065
+        },
+        "behavioral": {
+          "raw": 0.5,
+          "normalized": 0.5,
+          "weighted": 0.025
+        },
+        "seniority": {
+          "raw": 0.86,
+          "normalized": 0.86,
+          "weighted": 0.043000000000000003
+        }
+      },
+      "confidence_level": "HIGH",
+      "flags": {
+        "is_fresher": false,
+        "is_overqualified": false,
+        "is_duplicate": false,
+        "incomplete_profile": false,
+        "score_conflict": false,
+        "low_match": false,
+        "llm_rerank": true,
+        "github_verified": false,
+        "reasoning_verified": true,
+        "is_career_changer": false,
+        "is_hidden_gem": false
+      },
+      "tier": "weak_match",
+      "reasoning": {
+        "strength": "The candidate has a solid foundation in Python and PyTorch with relevant experience as a Data Scientist.",
+        "gap": "The candidate lacks essential skills in MLOps, Kubernetes, and has only 3.3 years of experience, which is borderline for seniority.",
+        "recommendation": "Consider with reservations due to strong trajectory but significant skill gaps.",
+        "llm_score": 4,
+        "verified": true,
+        "conflict_note": null
+      },
+      "skills_matched": [
+        "Python",
+        "PyTorch"
+      ],
+      "skills_missing": [
+        "TensorFlow",
+        "ML model training",
+        "3+ years ML experience",
+        "MLOps",
+        "Kubernetes"
+      ],
+      "experience_years": 3.3,
+      "trajectory_label": "insufficient_data",
+      "seniority_label": "underqualified",
+      "location_match": null,
+      "github_profile": null
+    }
+  ],
+  "hidden_gems": [],
+  "evaluation": {
+    "ndcg_score": 0.9562,
+    "confidence_interval": "±0.090",
+    "eval_set_size": 30,
+    "note": "Proxy metric — manual ground truth. NDCG computed against manually ranked sample. Higher confidence intervals reflect small eval set size."
+  },
+  "audit_log": {
+    "run_id": "run_20260619_083830",
+    "pipeline_version": "1.0.0",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "jd_quality_score": 85.0,
+    "skill_threshold_used": 0.65,
+    "signal_weights": {
+      "skills": 0.6,
+      "trajectory": 0.2,
+      "recency": 0.1,
+      "behavioral": 0.05,
+      "seniority": 0.05
+    },
+    "candidates_at_each_stage": {
+      "after_layer0": 29,
+      "after_layer1": 29,
+      "after_layer2": 29,
+      "after_layer3": 20
+    },
+    "generated_at": "2026-06-19T08:39:15Z"
+  },
+  "bias_note": "Excluded from scoring: name, gender, photo, university prestige, age, religion, caste"
+}
