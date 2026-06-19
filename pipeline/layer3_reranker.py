@@ -11,7 +11,8 @@ Design principles:
   — temperature=0 on all LLM calls for deterministic output.
   — asyncio.Semaphore(10) caps concurrent API calls.
   — Candidate summaries are capped at 500 tokens (≈ 2 000 chars).
-  — Conflict checker: if |llm_score − fusion_score| > 15 pts, fusion wins.
+  — Ranking always uses fusion score; LLM score is informational only.
+  — Conflict flag raised when |llm_score − fusion_score| > 15 pts.
   — API fallback: on failure → use L2 score, flag llm_rerank=False.
 
 Usage:
@@ -322,6 +323,7 @@ async def call_llm_async(
             response = await client.chat.completions.create(
                 model=_MODEL,
                 temperature=0,
+                seed=42,
                 max_tokens=_MAX_RESPONSE_TOKENS,
                 messages=[
                     {"role": "system", "content": system_prompt},
@@ -382,40 +384,45 @@ def merge_scores(
     api_success: bool = True,
 ) -> ScoredCandidate:
     """
-    Blend the LLM score with the fusion score and update the ScoredCandidate.
+    Attach LLM reasoning to the ScoredCandidate without touching final_score.
 
-    Conflict resolution (applies only when api_success=True):
-      — If |llm_score − fusion_score| > 15: conflict detected, fusion wins.
-      — Otherwise: final_score = 0.4 × llm_score + 0.6 × fusion_score.
+    final_score is set by Layer 2 (signal fusion) and optionally boosted by
+    the GitHub enrichment step.  merge_scores() must never overwrite it —
+    doing so would either introduce LLM non-determinism or silently strip the
+    GitHub boost.
 
-    API fallback (api_success=False):
-      — final_score = signal_fusion_score (L2 score unchanged).
-      — flags.llm_rerank = False.
+    What this function does:
+      — Stores llm_score_100 in llm_rerank_score (display only).
+      — Attaches the reasoning card.
+      — Sets llm_rerank / score_conflict / reasoning_verified flags.
+      — Appends a note to recommendation when conflict is detected (> 15 pts).
+
+    What this function does NOT do:
+      — Modify final_score in any path (LLM has zero influence on rank order).
 
     Mutates the ScoredCandidate in-place and returns it.
     """
     conflict = abs(llm_score_100 - scored.signal_fusion_score) > 15
 
     if not api_success:
-        # LLM call failed — use L2 score verbatim
-        scored.final_score = scored.signal_fusion_score
         scored.flags.llm_rerank = False
-    elif conflict:
-        # Fusion score wins; flag the disagreement
-        scored.final_score = scored.signal_fusion_score
-        scored.flags.llm_rerank = True
-        log_warning(
-            f"Layer 3 conflict — {scored.candidate_id}: "
-            f"llm={llm_score_100:.0f} vs fusion={scored.signal_fusion_score:.1f} "
-            f"(delta={abs(llm_score_100 - scored.signal_fusion_score):.1f}). "
-            f"Fusion score wins."
-        )
     else:
-        scored.final_score = round(
-            0.4 * llm_score_100 + 0.6 * scored.signal_fusion_score, 2
-        )
         scored.flags.llm_rerank = True
+        if conflict:
+            reasoning.recommendation = (
+                reasoning.recommendation
+                + " [Note: LLM assessment diverged significantly from signal"
+                " fusion score — manual review recommended.]"
+            )
+            log_warning(
+                f"Layer 3 conflict — {scored.candidate_id}: "
+                f"llm={llm_score_100:.0f} vs fusion={scored.signal_fusion_score:.1f} "
+                f"(delta={abs(llm_score_100 - scored.signal_fusion_score):.1f}). "
+                f"Fusion score used for ranking."
+            )
 
+    # final_score is intentionally left unchanged — it already equals
+    # signal_fusion_score + github_boost (applied before Layer 3).
     scored.llm_rerank_score = llm_score_100
     scored.reasoning = reasoning
     scored.flags.score_conflict = conflict
@@ -496,7 +503,15 @@ def run_layer3(
     # Step 6 — slice to top_k
     result = all_candidates[:top_k]
 
-    # Step 7 — log
+    # Step 7 — assert LLM did not influence final_score
+    # Tolerance of 5.0 pts accounts for the GitHub boost (≤ ~4.9 pts at weight=0.07).
+    for c in result:
+        assert abs(c.final_score - c.signal_fusion_score) < 5.0, (
+            f"{c.candidate_id}: final_score {c.final_score} != fusion "
+            f"{c.signal_fusion_score} — LLM is still influencing ranking"
+        )
+
+    # Step 8 — log
     elapsed = time.time() - start
     log_layer_complete(layer=3, candidates_remaining=len(result), elapsed_seconds=elapsed)
 
