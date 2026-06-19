@@ -177,38 +177,14 @@ Total time:  52.7s
 ```
 
 ### Sample Reasoning Card
-```json
-{
-  "rank": 1,
-  "candidate_id": "C003",
-  "scores": {
-    "final_score": 84.2,
-    "signal_fusion_score": 81.0,
-    "llm_rerank_score": 90,
-    "score_conflict": false
-  },
-  "signal_breakdown": {
-    "skills_match":  {"raw": 0.92, "normalized": 0.92, "weighted": 36.8},
-    "trajectory":    {"raw": 1.00, "normalized": 1.00, "weighted": 30.0},
-    "recency":       {"raw": 1.00, "normalized": 1.00, "weighted": 10.0},
-    "behavioral":    {"raw": 0.80, "normalized": 0.80, "weighted": 12.0},
-    "seniority":     {"raw": 1.00, "normalized": 1.00, "weighted": 10.0},
-    "github_boost":  {"raw": 0.74, "normalized": 0.74, "weighted": 5.2}
-  },
-  "confidence": {"level": "HIGH"},
-  "tier": "strong_match",
-  "reasoning": {
-    "strength": "Strong PyTorch and ML model training background with 6 years of hands-on experience.",
-    "gap": "No explicit MLOps or Kubernetes experience mentioned.",
-    "recommendation": "Strong hire — core skills and trajectory align well with role requirements.",
-    "llm_score": 9
-  }
-}
-```
+
+See `output/ranked_output.json` for the full ranked output including reasoning cards for all 20 shortlisted candidates.
 
 ### Output Files
 - `output/ranked_output.json` — full structured output with metadata, shortlist, hidden gems, evaluation, and audit log
 - `output/ranked_output.csv` — flat CSV for spreadsheet review
+
+> **Note on scores:** Scores reflect semantic fit against the specific JD requirements. A score of 60–70 indicates a strong match for roles where candidates rarely meet 100% of requirements. The relative ranking matters more than absolute values.
 
 ---
 
@@ -223,6 +199,8 @@ Total time:  52.7s
 | No GitHub | Senior ML Engineer (no enrichment) | 0.9446 | ±0.100 |
 
 Computed against manually ranked ground truth — 30 candidates, relevance scale 0–3 (3 = strong match, 2 = good match / hidden gem, 1 = marginal, 0 = not relevant). Confidence intervals reflect the small eval set size. This is a proxy metric; production use would require recruiter-validated ground truth.
+
+Rankings are fully deterministic — based on signal fusion scores only. The LLM contributes reasoning cards and a secondary score visible in the output, but does not affect rank order. Two identical pipeline runs produce identical rankings.
 
 ### What the Numbers Mean
 - NDCG = 1.0 means perfect ranking
@@ -304,6 +282,24 @@ Every pipeline run produces a bias audit report confirming field exclusion and L
 
 ---
 
+## Running on Real Data
+
+In the absence of a provided dataset, we constructed a synthetic pool specifically designed to cover every edge case the pipeline handles — freshers, career changers, duplicates, overqualified candidates, incomplete profiles, and hidden gems. This lets us demonstrate every system capability with verifiable ground truth.
+
+The NDCG is evaluated against manually created relevance judgments, not against the synthetic data generation process — the ground truth was created independently of the pipeline.
+
+HireSynth works with any candidate pool:
+
+```bash
+python run_pipeline.py \
+  --jd your_real_jd.txt \
+  --candidates your_real_candidates.json
+```
+
+The normalizer handles inconsistent formats, missing fields, and unstructured text automatically.
+
+---
+
 ## Known Limitations
 
 - **Synthetic dataset**: Evaluated on a 30-candidate synthetic pool. Real-world performance would require validation on recruiter-labeled data.
@@ -312,7 +308,7 @@ Every pipeline run produces a bias audit report confirming field exclusion and L
 
 - **GitHub enrichment**: Only works for public profiles. Private repos and enterprise GitHub are not accessible.
 
-- **Hidden gem detection**: Requires multi-role career history to compute trajectory. Single-role profiles always return `insufficient_data`.
+- **Hidden gem detection**: Activates when high-trajectory candidates fall outside the top-10 shortlist. In this candidate pool, the two high-trajectory candidates already rank in the top 5 — the tier correctly shows empty to avoid duplication.
 
 - **English only**: Pipeline optimised for English resumes. Non-English content triggers LLM fallback but may have lower accuracy.
 

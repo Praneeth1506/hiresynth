@@ -336,6 +336,14 @@ def assemble_output(
     """
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    hidden_gems_note = None
+    if len(hidden_gems) == 0:
+        hidden_gems_note = (
+            "High-trajectory candidates already present in top-10 shortlist. "
+            "Hidden gem tier activates when strong-trajectory candidates fall "
+            "outside the main shortlist."
+        )
+
     metadata = PipelineMetadata(
         job_id=job_id,
         job_title=jd_intent.job_title or f"{jd_intent.seniority} {jd_intent.domain}",
@@ -352,6 +360,7 @@ def assemble_output(
         signal_weights_used=jd_intent.weights,
         skill_threshold_used=float(audit_log.get("skill_threshold_used", 0.75)),
         embedding_model=_EMBEDDING_MODEL,
+        hidden_gems_note=hidden_gems_note,
     )
 
     evaluation = {

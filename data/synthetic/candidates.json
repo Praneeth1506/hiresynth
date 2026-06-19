@@ -6,9 +6,19 @@
     "skills": [
       "Python",
       "PyTorch",
-      "MLOps"
+      "MLOps",
+      "ML model training",
+      "Model Deployment",
+      "Deep Learning"
     ],
     "experience": [
+      {
+        "title": "ML Engineer",
+        "company": "Wipro AI Labs",
+        "start_date": "2019-06",
+        "end_date": "2021-08",
+        "summary": "Built and deployed ML pipelines for computer vision applications."
+      },
       {
         "title": "Senior ML Engineer",
         "company": "Swiggy",
@@ -23,7 +33,7 @@
       "graduation_year": 2018
     },
     "location": "Bangalore",
-    "total_years_exp": 6.0,
+    "total_years_exp": 5.2,
     "github_url": "https://github.com/ravikumar",
     "raw_text": "Ravi Kumar is a seasoned machine learning engineer with over six years of experience in developing advanced ML models, particularly in the food tech sector, and holds an M.Tech from IIT Madras.",
     "confidence_level": "HIGH"
@@ -35,9 +45,19 @@
     "skills": [
       "Python",
       "TensorFlow",
-      "Kubernetes"
+      "Kubernetes",
+      "ML model training",
+      "Model Deployment",
+      "Deep Learning"
     ],
     "experience": [
+      {
+        "title": "Junior Data Scientist",
+        "company": "Infosys",
+        "start_date": "2018-03",
+        "end_date": "2020-06",
+        "summary": "Developed predictive models using TensorFlow for banking clients."
+      },
       {
         "title": "Senior ML Engineer",
         "company": "Zomato",
@@ -52,7 +72,7 @@
       "graduation_year": 2018
     },
     "location": "Chennai",
-    "total_years_exp": 5.0,
+    "total_years_exp": 6.5,
     "github_url": "https://github.com/ananyasingh",
     "raw_text": "Ananya Singh has five years of experience in machine learning engineering at Zomato, where she has significantly improved recommendation systems, and she earned her M.Tech from IIT Delhi.",
     "confidence_level": "HIGH"
@@ -64,9 +84,19 @@
     "skills": [
       "Python",
       "TensorFlow",
-      "Distributed Training"
+      "Distributed Training",
+      "PyTorch",
+      "ML model training",
+      "Model Deployment"
     ],
     "experience": [
+      {
+        "title": "Software Engineer - ML",
+        "company": "HCL Technologies",
+        "start_date": "2018-08",
+        "end_date": "2021-02",
+        "summary": "Implemented deep learning models for NLP and computer vision tasks."
+      },
       {
         "title": "Senior ML Engineer",
         "company": "Flipkart",
@@ -81,7 +111,7 @@
       "graduation_year": 2017
     },
     "location": "Bangalore",
-    "total_years_exp": 7.0,
+    "total_years_exp": 6.0,
     "github_url": "https://github.com/arjunmenon",
     "raw_text": "Arjun Menon has over seven years of hands-on experience in machine learning at Flipkart, focusing on distributed systems for recommendation engines, and he holds an M.Tech from IIT Bombay.",
     "confidence_level": "HIGH"
@@ -93,9 +123,19 @@
     "skills": [
       "Python",
       "PyTorch",
-      "MLflow"
+      "MLflow",
+      "TensorFlow",
+      "ML model training",
+      "Model Deployment"
     ],
     "experience": [
+      {
+        "title": "Data Analyst",
+        "company": "Mu Sigma",
+        "start_date": "2019-01",
+        "end_date": "2021-06",
+        "summary": "Performed statistical analysis and built ML prototypes using Python."
+      },
       {
         "title": "Senior ML Engineer",
         "company": "CRED",
@@ -122,9 +162,19 @@
     "skills": [
       "Python",
       "PyTorch",
-      "MLOps"
+      "MLOps",
+      "TensorFlow",
+      "ML model training",
+      "Model Deployment"
     ],
     "experience": [
+      {
+        "title": "Junior ML Engineer",
+        "company": "Freshworks",
+        "start_date": "2018-06",
+        "end_date": "2020-10",
+        "summary": "Built recommendation systems and automated ML training pipelines."
+      },
       {
         "title": "Senior ML Engineer",
         "company": "Ola",

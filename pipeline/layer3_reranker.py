@@ -27,6 +27,7 @@ from pathlib import Path
 load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import asyncio
+import hashlib
 import json
 import os
 import re
@@ -432,7 +433,56 @@ def merge_scores(
 
 
 # ===========================================================================
-# PART 6 — ORCHESTRATOR
+# PART 6 — LLM RESPONSE CACHE
+# ===========================================================================
+
+_CACHE_PATH = Path(__file__).parent.parent / "data" / "llm_cache.json"
+_CACHE_VERSION = "1.0"
+
+
+def _compute_cache_key(jd_text: str, candidate_ids: list[str]) -> str:
+    """Compute a stable 8-char md5 key from JD text and sorted candidate IDs."""
+    candidates_repr = "".join(sorted(candidate_ids))
+    raw = (jd_text + candidates_repr).encode("utf-8")
+    return hashlib.md5(raw).hexdigest()[:8]
+
+
+def _load_llm_cache(cache_key: str) -> Optional[dict]:
+    """
+    Load cached LLM responses if the cache file exists and the key matches.
+
+    Returns the responses dict on a hit, None on any miss or parse error.
+    """
+    if not _CACHE_PATH.exists():
+        return None
+    try:
+        data = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
+        if (
+            data.get("cache_version") == _CACHE_VERSION
+            and data.get("jd_hash") == cache_key
+        ):
+            return data.get("responses", {})
+    except (json.JSONDecodeError, KeyError, OSError):
+        pass
+    return None
+
+
+def _save_llm_cache(cache_key: str, responses: dict) -> None:
+    """Persist LLM responses to the cache file, creating directories as needed."""
+    _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    cache_data = {
+        "cache_version": _CACHE_VERSION,
+        "jd_hash": cache_key,
+        "responses": responses,
+    }
+    _CACHE_PATH.write_text(
+        json.dumps(cache_data, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
+# ===========================================================================
+# PART 7 — ORCHESTRATOR
 # ===========================================================================
 
 def run_layer3(
@@ -440,6 +490,8 @@ def run_layer3(
     scored_candidates: list[ScoredCandidate],
     candidates_map: dict[str, CandidateNormalized],
     top_k: int = 20,
+    use_cache: bool = True,
+    jd_text: str = "",
 ) -> list[ScoredCandidate]:
     """
     Layer 3 top-level orchestrator — LLM re-ranking pipeline.
@@ -479,16 +531,47 @@ def run_layer3(
             summary = build_candidate_summary(sc, norm)
         candidates_with_summaries.append((sc, summary))
 
-    # Step 3 — async LLM calls
-    client = AsyncOpenAI()
-    semaphore = asyncio.Semaphore(_SEMAPHORE_LIMIT)
+    # Step 3 — async LLM calls (with optional cache)
+    candidate_ids = [sc.candidate_id for sc in top_50]
+    cache_key = _compute_cache_key(jd_text, candidate_ids)
+    cached_responses: Optional[dict] = _load_llm_cache(cache_key) if use_cache else None
 
-    print(f"  → Calling {_MODEL} for {len(top_50)} candidates "
-          f"(semaphore={_SEMAPHORE_LIMIT})...")
-
-    results = asyncio.run(
-        rerank_all_async(candidates_with_summaries, jd_intent, semaphore, client)
-    )
+    if cached_responses is not None:
+        print(f"  → Using cached LLM responses (key={cache_key})")
+        results: list[tuple[ScoredCandidate, ReasoningCard, float, bool]] = []
+        sc_map = {sc.candidate_id: sc for sc in top_50}
+        for cid, resp in cached_responses.items():
+            sc = sc_map.get(cid)
+            if sc is None:
+                continue
+            card = ReasoningCard(
+                strength=resp.get("strength", ""),
+                gap=resp.get("gap", ""),
+                recommendation=resp.get("recommendation", ""),
+                llm_score=int(resp.get("llm_score", 5)),
+                verified=True,
+            )
+            results.append((sc, card, card.llm_score * 10.0, True))
+    else:
+        client = AsyncOpenAI()
+        semaphore = asyncio.Semaphore(_SEMAPHORE_LIMIT)
+        print(f"  → Calling {_MODEL} for {len(top_50)} candidates "
+              f"(semaphore={_SEMAPHORE_LIMIT})...")
+        results = asyncio.run(
+            rerank_all_async(candidates_with_summaries, jd_intent, semaphore, client)
+        )
+        if use_cache:
+            responses_to_cache = {
+                sc.candidate_id: {
+                    "strength": card.strength,
+                    "gap": card.gap,
+                    "recommendation": card.recommendation,
+                    "llm_score": card.llm_score,
+                }
+                for sc, card, _score, _ok in results
+                if _ok
+            }
+            _save_llm_cache(cache_key, responses_to_cache)
 
     # Step 4 — merge scores
     for scored, reasoning, llm_score_100, api_success in results:

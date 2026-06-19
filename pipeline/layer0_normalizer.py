@@ -329,6 +329,63 @@ def _detect_multi_role(must_have: list[str]) -> tuple[bool, dict | None, dict | 
     return False, None, None
 
 
+def _adjust_weights_for_role_type(
+    weights: dict,
+    domain: str,
+    seniority: str,
+) -> dict:
+    """Adjust signal weights based on role type.
+
+    Technical IC roles → skills matters more.
+    Leadership roles → trajectory matters more.
+    """
+    domain_lower = domain.lower()
+    seniority_lower = seniority.lower()
+
+    technical_keywords = [
+        "machine learning", "ml", "data science",
+        "engineering", "software", "developer",
+        "data engineer", "mlops", "deep learning",
+    ]
+    leadership_keywords = [
+        "lead", "manager", "director", "head",
+        "vp", "principal", "architect",
+    ]
+
+    is_technical = any(kw in domain_lower for kw in technical_keywords)
+    is_leadership = any(kw in seniority_lower for kw in leadership_keywords)
+
+    if is_technical and not is_leadership:
+        weights["skills"] = 0.50
+        weights["trajectory"] = 0.20
+        weights["recency"] = 0.10
+        weights["behavioral"] = 0.10
+        weights["seniority"] = 0.10
+    elif is_leadership:
+        weights["skills"] = 0.35
+        weights["trajectory"] = 0.35
+        weights["recency"] = 0.10
+        weights["behavioral"] = 0.10
+        weights["seniority"] = 0.10
+
+    total = sum(weights.values())
+    if total > 0:
+        weights = {k: round(v / total, 3) for k, v in weights.items()}
+
+    return weights
+
+
+def _clean_skill_phrases(skills: list[str]) -> list[str]:
+    """Truncate overly long skill phrases to a maximum of 4 words."""
+    cleaned = []
+    for skill in skills:
+        words = skill.split()
+        if len(words) > 4:
+            skill = " ".join(words[:3])
+        cleaned.append(skill.strip())
+    return cleaned
+
+
 def parse_jd(jd_text: str, job_id: str) -> JDIntent:
     """
     Parse a raw job-description string into a validated JDIntent.
@@ -383,6 +440,16 @@ def parse_jd(jd_text: str, job_id: str) -> JDIntent:
         "For weights: all five must sum exactly to 1.0.\n"
         "Technical/IC roles → increase skills weight.\n"
         "Leadership roles → increase trajectory weight.\n\n"
+        "IMPORTANT: For must_have and nice_have lists, extract SHORT skill names only "
+        "(1-4 words max).\n"
+        "Examples of CORRECT skill extraction:\n"
+        "  'Python' not 'Proficiency in Python programming'\n"
+        "  'PyTorch' not 'Experience with PyTorch framework'\n"
+        "  'ML model training' not 'Strong background in training and deploying machine learning models'\n"
+        "  'Kubernetes' not 'Experience with containerization technologies such as Kubernetes'\n"
+        "  'MLOps' not 'Familiarity with MLOps practices'\n"
+        "  '3+ years ML experience' not 'Minimum of 3 years of hands-on experience working in ML'\n"
+        "Always prefer the shortest unambiguous form. Maximum 4 words per skill.\n\n"
         f"JD TEXT:\n{jd_text[:3000]}"
     )
 
@@ -418,6 +485,15 @@ def parse_jd(jd_text: str, job_id: str) -> JDIntent:
         intent.must_have = intent.must_have + [
             s for s in fallback if s.lower() not in existing
         ]
+
+    # Step 7 — clean up long skill phrases that slipped through the LLM
+    intent.must_have = _clean_skill_phrases(intent.must_have)
+    intent.nice_have = _clean_skill_phrases(intent.nice_have)
+
+    # Step 8 — adjust weights based on role type (technical IC vs leadership)
+    intent.weights = _adjust_weights_for_role_type(
+        intent.weights, intent.domain, intent.seniority
+    )
 
     return intent
 

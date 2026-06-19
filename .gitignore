@@ -11,3 +11,4 @@ output/
 *.log
 venv/
 .venv/
+data/llm_cache.json

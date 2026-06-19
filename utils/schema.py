@@ -231,6 +231,7 @@ class PipelineMetadata:
     signal_weights_used: Dict[str, float]      # signal name → weight applied
     skill_threshold_used: float
     embedding_model: str
+    hidden_gems_note: Optional[str] = None     # populated when hidden_gems list is empty
 
 
 # ---------------------------------------------------------------------------

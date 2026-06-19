@@ -109,6 +109,12 @@ def _parse_args() -> argparse.Namespace:
         default=False,
         help="Skip GitHub enrichment (faster runs, no API calls to github.com)",
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        default=False,
+        help="Bypass LLM response cache and force fresh API calls for Layer 3",
+    )
     return parser.parse_args()
 
 
@@ -134,6 +140,7 @@ def main() -> int:
     output_dir     = args.output_dir
     top_k          = args.top_k
     skip_github    = args.no_github
+    no_cache       = args.no_cache
 
     if not jd_path.exists():
         print(f"[ERROR] JD file not found: {jd_path}", file=sys.stderr)
@@ -230,7 +237,10 @@ def main() -> int:
         print(f"\n  L2.5 complete: GitHub enrichment applied.\n")
 
     # Step 10 — Layer 3: LLM re-ranking (async, Semaphore=10, temperature=0)
-    final_shortlist = run_layer3(jd_intent, shortlist, candidates_map, top_k=top_k)
+    final_shortlist = run_layer3(
+        jd_intent, shortlist, candidates_map, top_k=top_k,
+        use_cache=not no_cache, jd_text=jd_text,
+    )
     print(f"\n  L3 complete: {len(final_shortlist)} candidates in final shortlist.\n")
 
     # Step 11 — Layer 4: evaluation + bias audit + serialise output

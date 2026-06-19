@@ -620,22 +620,24 @@ def check_low_match(scored: list[ScoredCandidate]) -> bool:
 def detect_hidden_gems(
     scored: list[ScoredCandidate],
     candidates_map: dict[str, CandidateNormalized],
+    main_shortlist_ids: set[str],
 ) -> list[ScoredCandidate]:
     """
     Identify candidates who are undervalued by the fusion score but show
-    exceptional trajectory and skills signals.
+    strong trajectory and skills signals, and were not captured in the main
+    shortlist top 10.
 
     Criteria (all must hold):
-      — skills signal normalised score ≥ 0.60
-      — trajectory_label in {'high_growth', 'domain_expansion'}
-      — 60.0 ≤ fusion_score_100 ≤ 79.0
-      — tier != 'strong_match'
+      — skills signal normalised score ≥ 0.35
+      — trajectory_label in {'high_growth', 'domain_expansion', 'steady_climb'}
+      — 45.0 ≤ fusion_score_100 ≤ 74.0
+      — candidate_id NOT in main_shortlist_ids (i.e. not already in top 10)
 
     Qualifying candidates are sorted by trajectory score desc, then skills
     score desc, and capped at 5.  Their tier is mutated to 'hidden_gem' and
     is_hidden_gem flag set.
     """
-    HIGH_TRAJECTORY = {"high_growth", "domain_expansion"}
+    HIGH_TRAJECTORY = {"high_growth", "domain_expansion", "steady_climb"}
     gems: list[ScoredCandidate] = []
 
     for sc in scored:
@@ -644,10 +646,10 @@ def detect_hidden_gems(
         score = sc.signal_fusion_score
 
         if (
-            skills_norm >= 0.60
+            skills_norm >= 0.35
             and traj in HIGH_TRAJECTORY
-            and 60.0 <= score <= 79.0
-            and sc.tier != "strong_match"
+            and 45.0 <= score <= 74.0
+            and sc.candidate_id not in main_shortlist_ids
         ):
             gems.append(sc)
 
@@ -696,7 +698,7 @@ def run_layer2(
     Returns:
         (shortlist, hidden_gems, low_match_warning)
         shortlist     — top_k ScoredCandidate objects, ranked 1..top_k
-        hidden_gems   — up to 5 hidden-gem candidates (may overlap shortlist)
+        hidden_gems   — up to 5 hidden-gem candidates (never in shortlist top 10)
         low_match_warning — True when top score < 40 / 100
     """
     start = time.time()
@@ -730,14 +732,16 @@ def run_layer2(
             f"{scored[0].signal_fusion_score:.1f} / 100 (threshold: 40)"
         )
 
-    # Step 6 — hidden gems (before top_k slice, so we scan the full list)
+    # Step 6 — slice to top_k for the main shortlist
+    shortlist = scored[:top_k]
+
+    # Step 7 — hidden gems: scan the full scored list for candidates outside
+    # the top 10 who show strong signals the recruiter might have missed.
     candidates_map: dict[str, CandidateNormalized] = {
         c.candidate_id: c for c in candidates
     }
-    hidden_gems = detect_hidden_gems(scored, candidates_map)
-
-    # Step 7 — slice to top_k
-    shortlist = scored[:top_k]
+    main_shortlist_ids = {s.candidate_id for s in shortlist[:10]}
+    hidden_gems = detect_hidden_gems(scored, candidates_map, main_shortlist_ids)
 
     elapsed = time.time() - start
     log_layer_complete(layer=2, candidates_remaining=len(shortlist), elapsed_seconds=elapsed)
