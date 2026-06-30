@@ -355,13 +355,35 @@ def score_candidate(candidate: dict[str, Any], today: date) -> dict[str, float]:
 # Rule-based reasoning generator
 # ---------------------------------------------------------------------------
 
-def generate_reasoning(candidate: dict[str, Any], scores: dict[str, float]) -> str:
-    """
-    Produce a one-sentence reasoning string using only candidate data (no API).
+# Retrieval/vector-DB specific skills worth naming in the lead phrase.
+# Matched case-insensitively against candidate skill names.
+_HIGH_VALUE_SKILLS: frozenset[str] = frozenset({
+    "FAISS", "Weaviate", "Pinecone", "Milvus", "Qdrant",
+    "RAG", "NDCG", "MRR", "BM25",
+    "Sentence Transformers", "Information Retrieval",
+    "Semantic Search", "Vector Search", "Hybrid Search",
+    "Reranking", "Embeddings",
+})
+_HIGH_VALUE_LOWER: frozenset[str] = frozenset(s.lower() for s in _HIGH_VALUE_SKILLS)
 
-    Format: "<title> with <years> yrs; <N> matched AI/ML skills; response rate <X%>
-             [; actively looking] [; GitHub score <N>] [; saved by <N> recruiters]
-             [; concern: <...>]."
+
+def generate_reasoning(
+    candidate: dict[str, Any],
+    scores: dict[str, float],
+    rank: int = 0,
+) -> str:
+    """
+    Produce a rank-aware reasoning string under 200 chars using only local data (no API).
+
+    Five stages:
+      1. Skill lead    — title + most specific matched JD skills
+      2. Experience    — years vs 5-9yr ideal band
+      3. Behavioral    — strong signals only (response rate, GitHub, saved, open to work)
+      4. Concerns      — prefixed "risk:" when any concern is present
+      5. Verdict       — rank-tiered suffix
+
+    Assembly: "; ".join(non-empty stages) + " " + verdict + "."
+    Truncated to 200 chars at the last complete "; " boundary.
     """
     profile: dict = candidate.get("profile") or {}
     redrob: dict = candidate.get("redrob_signals") or {}
@@ -373,49 +395,63 @@ def generate_reasoning(candidate: dict[str, Any], scores: dict[str, float]) -> s
     except (TypeError, ValueError):
         years = 0.0
 
-    # Matched skills (name list, up to 3)
-    cand_skill_names: list[str] = [
-        str(s.get("name") or "") for s in skills_list if isinstance(s, dict)
-    ]
-    matched: list[str] = [
-        s for s in cand_skill_names
-        if any(j in s.lower() or s.lower() in j for j in _JD_SKILLS_LOWER)
-    ][:3]
+    # ------------------------------------------------------------------ Stage 1
+    all_matched: list[str] = []
+    high_value: list[str] = []
+    for entry in skills_list:
+        if not isinstance(entry, dict):
+            continue
+        name: str = str(entry.get("name") or "")
+        name_lower = name.lower()
+        if not any(j in name_lower or name_lower in j for j in _JD_SKILLS_LOWER):
+            continue
+        all_matched.append(name)
+        if any(hv in name_lower or name_lower in hv for hv in _HIGH_VALUE_LOWER):
+            high_value.append(name)
 
+    if len(high_value) >= 2:
+        skill_lead = f"{title} with {'+'.join(high_value[:3])} background"
+    elif len(high_value) == 1:
+        skill_lead = f"{title}; some {high_value[0]} exposure"
+    elif all_matched:
+        skill_lead = f"{title}; limited direct skill overlap"
+    else:
+        skill_lead = f"{title}; adjacent ML skills only"
+
+    # ------------------------------------------------------------------ Stage 2
+    if 5.0 <= years <= 9.0:
+        exp_str = f"{years:.1f}yr in band"
+    elif years < 5.0:
+        exp_str = f"{years:.1f}yr below ideal band"
+    else:
+        exp_str = f"{years:.1f}yr above ideal band"
+
+    # ------------------------------------------------------------------ Stage 3
     try:
         rr: float = float(redrob.get("recruiter_response_rate") or 0)
     except (TypeError, ValueError):
         rr = 0.0
-
-    parts: list[str] = [
-        f"{title} with {years:.1f} yrs",
-        (
-            f"{len(matched)} matched AI/ML skills ({', '.join(matched)})"
-            if matched
-            else "limited direct skill match"
-        ),
-        f"response rate {rr:.0%}",
-    ]
-
-    # Positive signals
-    if redrob.get("open_to_work_flag"):
-        parts.append("actively looking")
-
     try:
         gas: float = float(redrob.get("github_activity_score") or -1)
     except (TypeError, ValueError):
         gas = -1.0
-    if gas >= 50.0:
-        parts.append(f"GitHub score {gas:.0f}")
-
     try:
         saved_count: float = float(redrob.get("saved_by_recruiters_30d") or 0)
     except (TypeError, ValueError):
         saved_count = 0.0
-    if saved_count >= 5:
-        parts.append(f"saved by {saved_count:.0f} recruiters")
+    open_to_work: bool = bool(redrob.get("open_to_work_flag"))
 
-    # Concerns
+    behavioral_parts: list[str] = []
+    if open_to_work:
+        behavioral_parts.append("actively looking")
+    if rr >= 0.50:
+        behavioral_parts.append(f"{rr:.0%} response")
+    if gas >= 40.0:
+        behavioral_parts.append(f"GitHub {gas:.0f}")
+    if saved_count >= 5:
+        behavioral_parts.append(f"saved by {saved_count:.0f} recruiters")
+
+    # ------------------------------------------------------------------ Stage 4
     concerns: list[str] = []
 
     last_active_raw = redrob.get("last_active_date")
@@ -433,11 +469,35 @@ def generate_reasoning(candidate: dict[str, Any], scores: dict[str, float]) -> s
         notice = 0.0
     if notice > 90:
         concerns.append(f"notice {notice:.0f}d")
+    if not open_to_work:
+        concerns.append("not open to work")
+    if rr < 0.30:
+        concerns.append(f"low response {rr:.0%}")
+    # years outside band is already expressed in Stage 2 — skip to avoid duplication
 
+    # ------------------------------------------------------------------ Stage 5
+    if rank <= 10:
+        verdict = "— strong hire."
+    elif rank <= 50:
+        verdict = "— worth reviewing."
+    else:
+        verdict = "— borderline."
+
+    # ------------------------------------------------------------------ Assembly
+    parts: list[str] = [skill_lead, exp_str]
+    if behavioral_parts:
+        parts.append(", ".join(behavioral_parts))
     if concerns:
-        parts.append("concern: " + ", ".join(concerns))
+        parts.append("risk: " + ", ".join(concerns))
 
-    return "; ".join(parts) + "."
+    text = "; ".join(parts) + " " + verdict
+
+    # Truncate at 200 chars on a clean "; " boundary (never mid-word)
+    if len(text) > 200:
+        cut = text.rfind("; ", 0, 197)
+        text = (text[:cut] + " " + verdict) if cut != -1 else text[:197] + "..."
+
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -632,7 +692,7 @@ def main() -> int:
 
     output_rows: list[dict[str, Any]] = []
     for rank, (cid, raw_score, candidate) in enumerate(top_entries, start=1):
-        reasoning = generate_reasoning(candidate, scores_by_cid[cid])
+        reasoning = generate_reasoning(candidate, scores_by_cid[cid], rank=rank)
         output_rows.append({
             "candidate_id": cid,
             "rank": rank,
@@ -678,4 +738,37 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    import os as _os
+    # Self-check: print 3 example reasoning strings before running the full pipeline.
+    # Fabricated data — verifies format without needing candidates.jsonl.
+    _CHECK_CASES = [
+        ({"profile": {"current_title": "ML Platform Engineer", "years_of_experience": 7.5},
+          "skills": [{"name": "FAISS"}, {"name": "Weaviate"}, {"name": "RAG"},
+                     {"name": "NDCG"}, {"name": "Pinecone"}],
+          "redrob_signals": {"last_active_date": "2026-06-25", "open_to_work_flag": True,
+                             "recruiter_response_rate": 0.83, "github_activity_score": 75,
+                             "saved_by_recruiters_30d": 19, "notice_period_days": 30,
+                             "avg_response_time_hours": 3, "interview_completion_rate": 0.95,
+                             "profile_completeness_score": 98}}, 5),
+        ({"profile": {"current_title": "NLP Engineer", "years_of_experience": 5.2},
+          "skills": [{"name": "NLP"}, {"name": "BM25"}, {"name": "Elasticsearch"}],
+          "redrob_signals": {"last_active_date": "2026-06-10", "open_to_work_flag": False,
+                             "recruiter_response_rate": 0.28, "github_activity_score": 12,
+                             "saved_by_recruiters_30d": 2, "notice_period_days": 60,
+                             "avg_response_time_hours": 20, "interview_completion_rate": 0.70,
+                             "profile_completeness_score": 75}}, 47),
+        ({"profile": {"current_title": "Data Analyst", "years_of_experience": 3.3},
+          "skills": [{"name": "Python"}, {"name": "NLP"}],
+          "redrob_signals": {"last_active_date": "2025-11-01", "open_to_work_flag": False,
+                             "recruiter_response_rate": 0.15, "github_activity_score": 5,
+                             "saved_by_recruiters_30d": 0, "notice_period_days": 120,
+                             "avg_response_time_hours": 48, "interview_completion_rate": 0.50,
+                             "profile_completeness_score": 60}}, 88),
+    ]
+    print("\n--- generate_reasoning self-check ---")
+    for _c, _r in _CHECK_CASES:
+        _out = generate_reasoning(_c, {}, rank=_r)
+        print(f"rank {_r:3d} ({len(_out):3d}ch): {_out}")
+    print("--- end self-check ---\n")
+
     sys.exit(main())
