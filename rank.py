@@ -120,6 +120,7 @@ def _score_skills(candidate: dict[str, Any], current_title: str = "") -> float:
                 pass
 
     total_skill_score = 0.0
+    matched_count = 0
 
     for skill_entry in skills:
         if not isinstance(skill_entry, dict):
@@ -136,6 +137,8 @@ def _score_skills(candidate: dict[str, Any], current_title: str = "") -> float:
         )
         if not matched:
             continue
+
+        matched_count += 1
 
         # Proficiency weight
         proficiency: str = str(skill_entry.get("proficiency_level") or "").lower()
@@ -170,6 +173,17 @@ def _score_skills(candidate: dict[str, Any], current_title: str = "") -> float:
                 pass
 
     score = min(total_skill_score / 4.0, 1.0)
+
+    # Depth bonus: rewards breadth of genuine AI/ML skill coverage
+    if matched_count >= 6:
+        depth_bonus = 0.15
+    elif matched_count >= 4:
+        depth_bonus = 0.08
+    elif matched_count >= 2:
+        depth_bonus = 0.03
+    else:
+        depth_bonus = 0.0
+    score = min(score + depth_bonus, 1.0)
 
     title_lower = current_title.lower()
     if any(t in title_lower for t in _BAD_TITLES):
