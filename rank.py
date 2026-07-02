@@ -90,6 +90,9 @@ _BAD_TITLES: tuple[str, ...] = (
     "graphic designer", "customer support", "marketing manager",
     "content writer", "sales", "hr manager",
     "operations manager", "project manager", "business analyst",
+    "data analyst", "backend engineer", "mobile developer",
+    "frontend engineer", "java developer", "operations manager",
+    "software engineer",  
 )
 
 
