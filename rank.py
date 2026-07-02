@@ -91,7 +91,7 @@ _BAD_TITLES: tuple[str, ...] = (
     "content writer", "sales", "hr manager",
     "operations manager", "project manager", "business analyst",
     "data analyst", "backend engineer", "mobile developer",
-    "frontend engineer", "java developer", "operations manager",
+    "frontend engineer", "java developer",
     "software engineer",  
 )
 
@@ -190,7 +190,7 @@ def _score_skills(candidate: dict[str, Any], current_title: str = "") -> float:
 
     title_lower = current_title.lower()
     if any(t in title_lower for t in _BAD_TITLES):
-        score *= 0.4
+        score *= 0.1
 
     return score
 
