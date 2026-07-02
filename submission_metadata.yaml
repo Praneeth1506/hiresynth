@@ -1,93 +1,72 @@
-# Redrob Hackathon — Submission Metadata Template
-#
-# Copy this file to your repo root as `submission_metadata.yaml` and fill it in.
-# The fields here should match what you submit via the portal at upload time.
-# Stage 3 review uses this file to verify your portal metadata.
-
-# ============================================================================
-# Team identity
-# ============================================================================
-team_name: "The Primes"  # Used in leaderboard and announcements
+team_name: "HireSynth"
 
 primary_contact:
   name: "Praneeth V"
-  email: "praneethv166@gmail.com"   # Used for all organizer communication
-  phone: "+91-8056606050"        # Used for top-50 / top-10 outreach
+  email: "praneethv166@gmail.com"
+  phone: "+91-8056606050"
 
 team_members:
-  - name: "Francis Denisa"
+  - name: "Francis Denisa A"
     email: "francisdenisa33@gmail.com"
 
-  # Add more members as needed; solo participants list just one member
 
-# ============================================================================
-# Code and reproducibility
-# ============================================================================
 github_repo: "https://github.com/Praneeth1506/hiresynth"
-# Required. Must be reachable. Private repos OK if you can grant organizer
-# access at Stage 3 (the email to add will be communicated then).
 
-sandbox_link: "https://huggingface.co/spaces/YOUR_USERNAME/redrob-ranker"
-# Required. A working hosted environment where the ranker can be run on a small
-# candidate sample. See Section 10.5 of submission_spec.md for acceptable
-# platforms (HuggingFace Spaces, Streamlit Cloud, Replit, Colab, Docker, Binder).
+sandbox_link: "https://colab.research.google.com/drive/12hTcW5QyCJo-2338uWKUI7vibEXxutit?usp=sharing"
 
-reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
-# The single command that produces submission.csv from candidates.jsonl.
-# Should run end-to-end within 5 minutes on CPU with 16GB RAM and no network.
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --jd ./job_description.docx --out ./submission.csv"
 
-# ============================================================================
-# Compute environment
-# ============================================================================
 compute:
-  platform: "MacBook Pro M2"                    # Or: "AWS EC2 c5.4xlarge", "Local Linux box", etc.
-  cpu_cores: 8                                  # Number of CPU cores used
-  ram_gb: 16                                    # Available RAM in GB
-  python_version: "3.11.4"                      # python --version
-  os: "macOS 14.2"                              # Or "Ubuntu 22.04 LTS", etc.
-  uses_gpu_for_inference: false                 # Must be false — see compute constraints
-  has_network_during_ranking: false             # Must be false — no API calls during ranking
-  pre_computation_required: false               # true if you pre-compute embeddings or train models offline
-  pre_computation_time_minutes: 0               # Approximate, if applicable
+  platform: "MacBook Air M4
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.13"
+  os: "macOS"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
 
-# ============================================================================
-# AI tools declaration
-# ============================================================================
-# Transparency only — declared use is NOT penalized. Be honest. Stage 5 interview
-# may verify these declarations against your code; declarations that contradict
-# your code or your interview are flagged.
 ai_tools_used:
-  - "Claude"        # e.g. for architecture discussion, code review
-  - "GitHub Copilot"  # e.g. for autocomplete
-  # Other options: "ChatGPT", "Cursor", "Gemini", "Codeium", "Other", "None"
+  - "Claude (Anthropic) - architecture design, code review, debugging"
+  - "GPT-4o-mini (OpenAI) - used within the pipeline for JD parsing and reasoning card generation"
 
 ai_usage_summary: |
-  Briefly describe how AI tools were used. Examples:
-  - "Used Claude for code review and architectural discussion. Used Copilot for autocomplete.
-     No candidate data was fed to any LLM."
-  - "Used ChatGPT to debug Python issues and Cursor for refactoring."
-  - "No AI tools used."
+  I used Claude as a thinking partner during architecture design and debugging.
+  All implementation decisions, code structure, and signal design reflect
+  our own engineering judgment. No candidate data from candidates.jsonl
+  was shared with any external tool.
+  
+  GPT-4o-mini is used in run_pipeline.py for JD parsing and reasoning card
+  generation. This file is a research pipeline demonstrating the full
+  HireSynth architecture and is not the submission ranker.
+  
+  The submission file rank.py makes zero external API calls during ranking,
+  fully complying with the no-network constraint in the submission spec.
 
-# ============================================================================
-# Approach summary (optional but recommended)
-# ============================================================================
+
 methodology_summary: |
-  ≤200 word summary of your approach. Strongly recommended.
+  HireSynth is a five-signal rule-based ranker with no external API calls
+  during ranking. It scores each of 100,000 candidates on:
+  (1) Skills match against JD core skills using proficiency, endorsement,
+  and duration weights, with a 0.1x title penalty for non-ML roles and
+  a depth bonus for candidates matching 4 or more core skills.
+  (2) Experience fit with 5-9 year ideal band, bidirectional detection
+  of underqualified and overqualified candidates.
+  (3) Behavioral signals from redrob_signals: activity recency, recruiter
+  response rate, GitHub activity score, saved-by-recruiters count,
+  open-to-work flag, interview completion rate, and profile completeness.
+  (4) Location proximity to Pune and Noida.
+  The system also includes a separate research pipeline (run_pipeline.py)
+  with FAISS dense retrieval, BM25 sparse retrieval, Reciprocal Rank Fusion,
+  GPT-4o-mini re-ranking, GitHub API enrichment, and NDCG evaluation
+  achieving NDCG@20 of 0.9562 on a 30-candidate synthetic test set.
+  Runtime for rank.py is approximately 5 seconds for 100,000 candidates
+  on CPU with no network calls.
 
-  Example:
-  "Rule-based ranker with explicit reasoning capture. Five scoring components
-  (skills, title+career, experience years, location, education) combined with
-  a multiplicative behavioral-signal modifier. The title component is the
-  decisive signal against keyword-stuffer traps; an endorsement-and-duration
-  trust multiplier on skills catches lazy keyword stuffing. Runtime is ~10
-  seconds for 50K candidates on CPU."
-
-# ============================================================================
-# Declarations
-# ============================================================================
 declarations:
-  read_submission_spec: true        # I have read submission_spec.md in full
-  code_is_original_work: true       # My code is my team's original work (using AI as a tool is fine)
-  no_collusion: true                # I have not coordinated my submission with other teams
-  honeypot_check_done: false        # OPTIONAL — set true if you explicitly checked for honeypots in your ranking
-  reproduction_tested: true         # I have tested that my reproduce_command runs end-to-end
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
