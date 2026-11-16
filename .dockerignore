@@ -1,0 +1,15 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.DS_Store
+*.log
+.faiss_index/
+data/llm_cache.json

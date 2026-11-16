@@ -10,4 +10,4 @@ build/
 *.log
 venv/
 .venv/
-data/llm_cache.json
+data/llm_cache.json.pytest_cache/

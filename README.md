@@ -157,6 +157,21 @@ python run_pipeline.py --no-github
 python run_pipeline.py --top-k 10
 ```
 
+### Tests
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+The suite is fully offline (no OpenAI key, GitHub API, or model download) and runs on every push via GitHub Actions. It covers the Layer 2 fusion ranker and `rank.py` (fixed input → fixed, hand-verified ranking), Reciprocal Rank Fusion, and the shared LLM/JD-parse cache.
+
+### Docker
+```bash
+docker build -t hiresynth .
+docker run --rm hiresynth pytest
+docker run --rm --env-file .env -v "$PWD/output:/app/output" hiresynth python run_pipeline.py
+```
+The image uses CPU-only PyTorch and bakes in `all-MiniLM-L6-v2`, so retrieval and scoring need no network at runtime.
+
 ---
 
 ## Output
