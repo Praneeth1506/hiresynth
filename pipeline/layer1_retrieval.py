@@ -271,7 +271,9 @@ def reciprocal_rank_fusion(
         default     → dense=0.5, sparse=0.5
 
     Returns:
-        All unique candidates sorted by RRF score descending.
+        All unique candidates sorted by RRF score descending, ties broken by
+        candidate_id ascending (all_ids is a set, whose iteration order varies
+        between processes with string-hash randomisation).
     """
     dense_w, sparse_w = _MODE_WEIGHTS.get(retrieval_mode, _DEFAULT_WEIGHTS)
 
@@ -291,7 +293,7 @@ def reciprocal_rank_fusion(
         rrf_score = dense_w / (k + dr) + sparse_w / (k + sr)
         fused.append((cid, rrf_score))
 
-    fused.sort(key=lambda x: x[1], reverse=True)
+    fused.sort(key=lambda x: (-x[1], x[0]))
     return fused
 
 
